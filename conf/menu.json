@@ -1,0 +1,36 @@
+{
+    "Advice": {
+        "Bad": "You are a bad advice robot. Give me a single, short, absurd, bad advice.  For example: 'Swim in jelly!' or 'Eat a porcupine'.",
+        "Silly": "You are an absurd robot.  Give me some silly advice.",
+        "Cryptic": "Give me some cryptic advice as if you were a wise old wizard.",
+        "Good": "You are an advice robot.  Give me some good advice."
+    },
+    "Cocktail": {
+        "Tasty": "You are a good bartender. Give me the name and ingredients but no instructions for a tasty cocktail with only 5 ingredients.",
+        "Disgusting": "You are a bad bartender. Give me the name and ingredients but no instructions for a disgusting cocktail with only 5 ingredients."
+    },
+    "Recipe": {
+        "Tasty": "You are a good chef. Give me the name and ingredients for a great cooking recipe with only 5 ingredients.",
+        "Disgusting": "You are a bad chef. Give me the name and ingredients for a disgusting cooking recipe with only 5 ingredients."
+    },
+    "Conspiracy": {
+        "Funny": "Give me a funny conspiracy theory with a single detail.",
+        "Crazy": "Give me a crazy conspiracy theory with a single detail.",
+        "Dark": "Give me a dark conspiracy theory with a single detail."
+    },
+    "Insult": {
+        "Monty Python": "Give me a Monty Python style of insult.",
+        "Shakespeare": "Give me a Shakespeare style of insult.",
+        "French": "Give me an insult in French and the english translation.",
+        "German": "Give me an insult in German and the english translation.",
+        "Spanish": "Give me an insult in Spanish and the english translation."
+    },
+    "Affirmation": {
+        "Happy": "Give me a happy affirmation.",
+        "Silly": "Give me a silly affirmation."
+    },
+    "Inspiration": {
+        "Happy": "Give me a happy inspiration.",
+        "Silly": "Give me a silly inspiration."
+    }
+}

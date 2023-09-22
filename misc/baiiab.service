@@ -1,0 +1,14 @@
+# /etc/systemd/system/baiiab.service
+# Logs: sudo journalctl -u baiiab -f
+# sudo systemctl restart baiiab
+[Unit]
+Description=Bad AI In A Box
+After=multi-user.target
+[Service]
+User=pi
+Type=simple
+Restart=always
+WorkingDirectory=/home/pi/baiiab
+ExecStart=/usr/bin/python /home/pi/baiiab/service.py
+[Install]
+WantedBy=multi-user.target
