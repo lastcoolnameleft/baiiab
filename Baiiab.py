@@ -124,6 +124,8 @@ class Baiiab:
         self._printer.println("This uses AI to generate")
         self._printer.println("responses and should not be")
         self._printer.println("taken literally or followed")
+        self._printer.feed(1)
+        self._printer.println("http://bit.ly/baiiab")
         self._printer.feed(4)
 
 
