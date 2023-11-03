@@ -18,7 +18,7 @@ batch_count = 20
 with open(menu_file,"r") as f:
     menu_data = literal_eval(f.read())
 # Override if I just want to generate one
-#menu_data = { 'Advice': { 'bad' : "You are a bad advice robot. Give me a single, short, absurd, bad advice.  For example: 'Swim in jelly!' or 'Eat a porcupine'" } }
+menu_data = { 'insult': { "Shakespeare": "Give me a Shakespeare style of insult." }}
 
 offline_responses = {}
 if (exists(offline_file)):
@@ -36,8 +36,11 @@ for topic in menu_data:
             offline_responses = literal_eval(f.read())
 
         for i in range(batch_count):
-            advice = baiiab.create_oai_completion(prompt)
-            offline_responses.append(advice)
+            try:
+                advice = baiiab.create_oai_completion(prompt)
+                offline_responses.append(advice)
+            except:
+                print("GOT EXCEPTION")
 
         with open(offline_file, "w") as outfile:
             # json_data refers to the above JSON

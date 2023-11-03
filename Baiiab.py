@@ -3,7 +3,7 @@ import gfx.sheep as sheep
 
 from functools import partial
 from lcd.lcd_menu_screen import Menu, MenuAction, MenuNoop, MenuScreen
-from tenacity import retry, stop_after_attempt, wait_random
+from tenacity import retry, stop_after_attempt, wait_random, stop_after_delay
 from time import sleep
 from gpiozero import PWMLED, Button
 from ast import literal_eval
@@ -127,7 +127,7 @@ class Baiiab:
         self._printer.feed(4)
 
 
-    @retry(stop=stop_after_attempt(5),
+    @retry(stop=(stop_after_delay(10) | stop_after_attempt(5)),
            wait=wait_random(min=1, max=2))
     def create_oai_completion(self, prompt):
         print(f'create_oai_completion({prompt})')

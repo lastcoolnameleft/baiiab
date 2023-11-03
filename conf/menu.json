@@ -19,18 +19,10 @@
         "Dark": "Give me a dark conspiracy theory with a single detail."
     },
     "Insult": {
-        "Monty Python": "Give me a Monty Python style of insult.",
+        "Monty Python": "Give me a Monty Python style of taunt.",
         "Shakespeare": "Give me a Shakespeare style of insult.",
         "French": "Give me an insult in French and the english translation.",
         "German": "Give me an insult in German and the english translation.",
         "Spanish": "Give me an insult in Spanish and the english translation."
-    },
-    "Affirmation": {
-        "Happy": "Give me a happy affirmation.",
-        "Silly": "Give me a silly affirmation."
-    },
-    "Inspiration": {
-        "Happy": "Give me a happy inspiration.",
-        "Silly": "Give me a silly inspiration."
     }
 }
