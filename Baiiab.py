@@ -1,5 +1,8 @@
-import os, openai, textwrap, random
-import gfx.sheep as sheep
+from dotenv import load_dotenv
+load_dotenv()
+
+import os, openai, textwrap, random, importlib
+icon = importlib.import_module('gfx.' + os.getenv('LOGO_IMG'))
 
 from functools import partial
 from lcd.lcd_menu_screen import Menu, MenuAction, MenuNoop, MenuScreen
@@ -90,14 +93,14 @@ class Baiiab:
         print(advice)
         self._printer.setDefault() # Restore printer to defaults
         # Centered but lighter
-        self._printer.printBitmap(sheep.width, sheep.height, sheep.data)
+        self._printer.printBitmap(icon.width, icon.height, icon.data)
 
         # Test inverse on & off
         self._printer.feed(1)
         self._printer.justify('C')
         self._printer.doubleHeightOn()
         self._printer.setSize('L')   # Set type size, accepts 'S', 'M', 'L'
-        self._printer.println("Bad AI In A Box")
+        self._printer.println(os.getenv('TITLE'))
         self._printer.setSize('S')
         self._printer.justify('L')
         self._printer.feed(1)

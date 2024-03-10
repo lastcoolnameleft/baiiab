@@ -8,7 +8,7 @@ from lcd.lcd_menu_screen import Menu, MenuAction, MenuNoop, MenuScreen
 from gpiozero import Button, RotaryEncoder
 from functools import partial
 from ast import literal_eval
-import time
+import time, os
 
 load_dotenv()
 
@@ -23,15 +23,15 @@ lcd = I2cLcd(1, DEFAULT_I2C_ADDR, 4, 20)
 
 
 def clockwise_cb():
-    print("prev")
+    #print("prev")
     screen.focus_prev()
 
 def counter_clockwise_cb():
-    print("next")
+    #print("next")
     screen.focus_next()
 
 def button_cb():
-    print("push")
+    #print("push")
     screen.choose()
 
 def action_callback(prompt, menu_screen, title):
@@ -41,7 +41,7 @@ def action_callback(prompt, menu_screen, title):
     columns = menu_screen.columns
     menu_screen.lcd.clear()
     menu_screen.lcd.move_to(0, 0)
-    menu_screen.lcd.putstr("PRINTING YOU A:\n".center(columns) + topic.center(columns) + "\n" + subtopic.center(columns))
+    menu_screen.lcd.putstr("PRINTING YOU A:\n".center(columns) + subtopic.center(columns) + "\n" + topic.center(columns))
     try:
         advice = baiiab.create_oai_completion(prompt)
     except:
@@ -53,7 +53,7 @@ def action_callback(prompt, menu_screen, title):
 
 
 baiiab = Baiiab(printer)
-screen = MenuScreen(lcd, "Welcome to", "Bad AI In A Box", baiiab.get_menu(action_callback))
+screen = MenuScreen(lcd, "Welcome to", os.getenv("TITLE"), baiiab.get_menu(action_callback))
 
 encoder = RotaryEncoder(10,9, bounce_time=0.1)
 button = Button(11)

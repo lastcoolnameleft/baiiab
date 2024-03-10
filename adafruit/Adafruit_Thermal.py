@@ -483,6 +483,11 @@ class Adafruit_Thermal(Serial):
 			size            = 0x01
 			self.charHeight = 48
 			self.maxColumn  = 32
+		elif c == 'M2': # Medium: double height
+			# New MC206H printer doesn't like it if prints > 7 chars and size is > 0x10
+			size            = 0x11
+			self.charHeight = 48
+			self.maxColumn  = 32
 		else:          # Small: standard width and height
 			size            = 0x00
 			self.charHeight = 24

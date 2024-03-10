@@ -32,13 +32,13 @@ class MenuScreen:
         self.focus = 1
         # Chunk the list and calculate the viewport:
         self.options_chunked = list(self._chunk_options())
-        print("options chunked = " + str(self.options_chunked))
+        #print("options chunked = " + str(self.options_chunked))
         self.render()
         return self
 
     # Renders the menu, also when refreshing (when changing select)
     def render(self):
-        print('self.render()')
+        #print('self.render()')
         # We only render the active screen, not the others
         if not self.active or not self.options_chunked:
             return
@@ -52,10 +52,10 @@ class MenuScreen:
         self._render_options()
 
     def _get_viewport(self):
-        print('self.current_chunk=' + str(self._current_chunk()))
-        print('self.options_chunked=' + str(self.options_chunked))
+        #print('self.current_chunk=' + str(self._current_chunk()))
+        #print('self.options_chunked=' + str(self.options_chunked))
         viewport = self.options_chunked[self._current_chunk()]
-        print('self.viewport=' + str(viewport))
+        #print('self.viewport=' + str(viewport))
         return viewport
 
     def _render_title(self):
@@ -105,7 +105,7 @@ class MenuScreen:
 
     # Focus on the next option in the menu
     def focus_next(self):
-        print('focus_next()')
+        #print('focus_next()')
         self.focus += 1
         # Wrap around
         if self.focus > len(self.options):
@@ -114,7 +114,7 @@ class MenuScreen:
 
     # Focus on the previous option in the menu
     def focus_prev(self):
-        print('focus_prev()')
+        #print('focus_prev()')
         self.focus -= 1
         if self.focus < 1:
             self.focus = len(self.options)
@@ -122,28 +122,28 @@ class MenuScreen:
 
     # Focus on the option n in the menu
     def focus_set(self, n):
-        print('focus_set:' + n)
+        #print('focus_set:' + n)
         self.focus = n
         self.render()
 
     # Choose the item on which the focus is applied
     def choose(self):
         chosen_option = self.options[self.focus - 1]
-        print('choose()::chosen_option=' + str(chosen_option))
+        #print('choose()::chosen_option=' + str(chosen_option))
 
         if type(chosen_option) == Menu:
-            print('choose()::Processing Menu')
+            #print('choose()::Processing Menu')
             self.parent = chosen_option
             self.options = chosen_option.options
             self.start()
         elif type(chosen_option) == MenuAction:
-            print('choose()::Processing MenuAction')
+            #print('choose()::Processing MenuAction')
             chosen_option.cb(self)  # Execute the callback function
             self.options = self.start_options
             self.parent = None
             self.start()
         elif type(chosen_option) == MenuNoop:
-            print('choose()::Processing MenuNoop')
+            #print('choose()::Processing MenuNoop')
             return self
 
     def _choose_menu(self, submenu):

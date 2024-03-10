@@ -12,7 +12,7 @@ openai.api_type = 'azure'
 openai.api_version = '2023-05-15' # this may change in the future
 
 def generate_prompt():
-    return "You are an absurd robot.  Give me some silly advice"
+    return "Give me a jive style of insult."
     #return "You are a bad advice robot. Give me a single, short, absurd, bad advice.  For example: 'Swim in jelly!' or 'Eat a porcupine'"
     # pretty good + text-davinci-003: return "Give me a single, short, weird, bad advice" 
 
