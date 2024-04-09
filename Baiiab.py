@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 load_dotenv()
 
-import os, openai, textwrap, random, importlib
+import os, openai, textwrap, random, importlib, logging
 icon = importlib.import_module('gfx.' + os.getenv('LOGO_IMG'))
 
 from functools import partial
@@ -58,7 +58,7 @@ class Baiiab:
         self._printer.println("...")
 
     def print_advice_short(self, advice, topic = None):
-        print("print_advice_small(" + advice + ")")
+        logging.info("print_advice_small(" + advice + ")")
         #self.print_thinking()
         self._printer.setDefault()
         if topic:
@@ -89,8 +89,8 @@ class Baiiab:
         return "\n".join(lines)
 
     def print_advice_long(self, advice, topic = None):
-        print(topic)
-        print(advice)
+        logging.info(topic)
+        logging.info(advice)
         self._printer.setDefault() # Restore printer to defaults
         # Centered but lighter
         self._printer.printBitmap(icon.width, icon.height, icon.data)
@@ -135,7 +135,7 @@ class Baiiab:
     @retry(stop=(stop_after_delay(10) | stop_after_attempt(5)),
            wait=wait_random(min=1, max=2))
     def create_oai_completion(self, prompt):
-        print(f'create_oai_completion({prompt})')
+        logging.info(f'create_oai_completion({prompt})')
         response = openai.Completion.create(
             engine=DEPLOYMENT_NAME,
     #            model="text-davinci-003",
@@ -144,9 +144,14 @@ class Baiiab:
             max_tokens=100,
             request_timeout=3
         )
-        print(response, flush=True)
+        logging.info(f'response={response}')
+        if response.choices[0].finish_reason != 'stop':
+            logging.error(f'REQUEST RESPONSE NOT VALID: {response.choices[0].finish_reason}')
+            raise Exception
         result = self.cleanse_advice(response.choices[0].text) 
         if not result:
+            logging.error('Unable to parse result')
             raise Exception
+        logging.info(f'create_oai_completion()::result={result}')
         return result
     

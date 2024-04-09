@@ -8,9 +8,13 @@ from lcd.lcd_menu_screen import Menu, MenuAction, MenuNoop, MenuScreen
 from gpiozero import Button, RotaryEncoder
 from functools import partial
 from ast import literal_eval
-import time, os
+import time, os, logging
+from logging.handlers import TimedRotatingFileHandler
 
 load_dotenv()
+
+logging.basicConfig(encoding='utf-8', level=logging.DEBUG,
+                    handlers=[TimedRotatingFileHandler("/home/pi/baiiab/logs/baiiab.log", when="H", interval=1)])
 
 #printer = Adafruit_Thermal("/dev/serial0", 19200, timeout=5)
 printer = Adafruit_Thermal("/dev/ttyS0", 19200, timeout=5)
@@ -23,21 +27,21 @@ lcd = I2cLcd(1, DEFAULT_I2C_ADDR, 4, 20)
 
 
 def clockwise_cb():
-    #print("prev")
+    logging.debug("prev")
     screen.focus_prev()
 
 def counter_clockwise_cb():
-    #print("next")
+    logging.debug("next")
     screen.focus_next()
 
 def button_cb():
-    #print("push")
+    logging.debug("push")
     screen.choose()
 
 def action_callback(prompt, menu_screen, title):
     topic = menu_screen.parent.title
     subtopic = title
-    print("callback action chosen.  topic=" + topic + ";subtopic=" + subtopic)
+    logging.info("callback action chosen.  topic=" + topic + ";subtopic=" + subtopic)
     columns = menu_screen.columns
     menu_screen.lcd.clear()
     menu_screen.lcd.move_to(0, 0)
@@ -45,7 +49,7 @@ def action_callback(prompt, menu_screen, title):
     try:
         advice = baiiab.create_oai_completion(prompt)
     except:
-        print("GOT EXCEPTION")
+        logging.error("GOT EXCEPTION")
         advice = baiiab.get_offline_advice(topic, subtopic)
         baiiab.print_offline()
 
@@ -53,15 +57,16 @@ def action_callback(prompt, menu_screen, title):
 
 
 baiiab = Baiiab(printer)
-screen = MenuScreen(lcd, "Welcome to", os.getenv("TITLE"), baiiab.get_menu(action_callback))
 
 encoder = RotaryEncoder(10,9, bounce_time=0.1)
 button = Button(11)
 
-screen.start()
 
 encoder.when_rotated_clockwise = counter_clockwise_cb  # backwards for some reason
 encoder.when_rotated_counter_clockwise = clockwise_cb
 button.when_pressed = button_cb
 
+time.sleep(5) # Wait for 1 core system to catch up
+screen = MenuScreen(lcd, "Welcome to", os.getenv("TITLE"), baiiab.get_menu(action_callback))
+screen.start()
 time.sleep(10000000)

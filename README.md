@@ -15,7 +15,7 @@ NOTE: Even though the title is "Bad AI", I don't think that the AI is inherently
 ## Technologies used
 
 - [Azure Open AI Service](https://learn.microsoft.com/en-us/azure/ai-services/openai/overview) - This is used to generate the responses
-- [Adafruit Thermal Printer](https://www.adafruit.com/product/597) - This creates the receipts for the response.  It's fun to have something which I can give out to other people
+- [Adafruit Thermal Printer](https://www.adafruit.com/product/597) - This creates the receipts for the response.  It's fun to have something which I can give out to other people. (Replaced by [Seeed Studio's Thermal Printer](https://www.seeedstudio.com/Embedded-Thermal-Printer-p-1621.html))
 - [Prusa i3 MK3](https://www.prusa3d.com/category/original-prusa-i3-mk3s/) - My 3d printer which I used to create the box
 - [Raspberry Pi 0w](https://www.raspberrypi.com/products/raspberry-pi-zero-w/) - The "brains" of the box.  It is the controller which runs all of the code
 - [20x4 LCD display module](https://amzn.to/3Qn3L1B) - Human readable display

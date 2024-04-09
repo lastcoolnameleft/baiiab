@@ -5,9 +5,6 @@ from pathlib import Path
 sys.path.append(str(Path(f"{__file__}").parent.parent))
 from dotenv import load_dotenv
 from adafruit.Adafruit_Thermal import *
-from Baiiab import Baiiab
-from lcd.i2c_lcd import I2cLcd # Example LCD interface used
-from lcd.lcd_menu_screen import Menu, MenuAction, MenuNoop, MenuScreen
 from gpiozero import Button, RotaryEncoder
 from functools import partial
 from ast import literal_eval
