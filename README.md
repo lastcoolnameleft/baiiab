@@ -26,4 +26,4 @@ NOTE: Even though the title is "Bad AI", I don't think that the AI is inherently
 - Q: How does this use OpenAI?
   - Using the [configuration file](https://github.com/lastcoolnameleft/baiiab/blob/main/conf/menu.json), BAIIAB will convert the user's input to a [prompt](https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api) which it will then send to Azure OpenAI Service and then send the response to the thermal printer
 - Q: That's so cool!  How can I build one myself?
-  - A: I haven't documented the full process yet, but message me and I can share details with you
+  - A: I haven't documented the full process yet, but message me and I can share details with you 

@@ -10,6 +10,7 @@ from functools import partial
 from ast import literal_eval
 import time, os, logging
 from logging.handlers import TimedRotatingFileHandler
+from openai import AzureOpenAI
 
 load_dotenv()
 
@@ -38,7 +39,7 @@ def button_cb():
     logging.debug("push")
     screen.choose()
 
-def action_callback(prompt, menu_screen, title):
+def action_callback(messages, menu_screen, title):
     topic = menu_screen.parent.title
     subtopic = title
     logging.info("callback action chosen.  topic=" + topic + ";subtopic=" + subtopic)
@@ -47,7 +48,7 @@ def action_callback(prompt, menu_screen, title):
     menu_screen.lcd.move_to(0, 0)
     menu_screen.lcd.putstr("PRINTING YOU A:\n".center(columns) + subtopic.center(columns) + "\n" + topic.center(columns))
     try:
-        advice = baiiab.create_oai_completion(prompt)
+        advice = baiiab.create_oai_chat_completion(messages, azure_openai_deployment)
     except:
         logging.error("GOT EXCEPTION")
         advice = baiiab.get_offline_advice(topic, subtopic)
@@ -55,8 +56,16 @@ def action_callback(prompt, menu_screen, title):
 
     baiiab.print_advice_long(advice, subtopic + " " + topic)
 
+oai_client = AzureOpenAI(
+    # This is the default and can be omitted
+    api_key=os.environ.get("AZURE_OPENAI_API_KEY"),
+    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), # your endpoint should look like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
+    api_version="2024-02-01",
+    timeout=3.0,
+)
+azure_openai_deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT")
 
-baiiab = Baiiab(printer)
+baiiab = Baiiab(printer, oai_client)
 
 encoder = RotaryEncoder(10,9, bounce_time=0.1)
 button = Button(11)

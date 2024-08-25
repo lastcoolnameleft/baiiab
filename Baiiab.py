@@ -8,7 +8,6 @@ from functools import partial
 from lcd.lcd_menu_screen import Menu, MenuAction, MenuNoop, MenuScreen
 from tenacity import retry, stop_after_attempt, wait_random, stop_after_delay
 from time import sleep
-from gpiozero import PWMLED, Button
 from ast import literal_eval
 #from adafruit.Adafruit_Thermal import *
 
@@ -16,16 +15,12 @@ DEPLOYMENT_NAME = 'text-davinci-003' # https://openai.com/pricing
 
 class Baiiab:
 
-    def __init__(self, printer = None):
+    def __init__(self, printer = None, oai_client = None):
         self._printer = printer
-
-        openai.api_key = os.getenv("OPENAI_API_KEY")
-        openai.api_base = os.getenv("OPENAI_ENDPOINT") # your endpoint should look like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
-        openai.api_type = 'azure'
-        openai.api_version = '2023-05-15' # this may change in the future
+        self._oai_client = oai_client
 
     def get_offline_location(self, topic, subtopic):
-        return "./offline/" + topic.lower() + "/" + subtopic.lower() + ".json"
+        return "./offline/" + topic.lower().replace(" ", "_") + "/" + subtopic.lower().replace(" ", "_") + ".json"
 
     def get_offline_advice(self, topic, subtopic):
         with open(self.get_offline_location(topic, subtopic), "r") as f:
@@ -39,8 +34,8 @@ class Baiiab:
         for menu_folder in menu_data:
             menu_options = []
             for menu_action in menu_data[menu_folder]:
-                prompt = menu_data[menu_folder][menu_action]
-                menu_options.append(MenuAction(menu_action, callback=partial(callback, prompt)))
+                messages = menu_data[menu_folder][menu_action]
+                menu_options.append(MenuAction(menu_action, callback=partial(callback, messages)))
             full_menu.append(Menu(menu_folder, options=menu_options))
         return full_menu
 
@@ -155,3 +150,22 @@ class Baiiab:
         logging.info(f'create_oai_completion()::result={result}')
         return result
     
+    
+    # @retry(stop=(stop_after_delay(10) | stop_after_attempt(5)), wait=wait_random(min=1, max=2))
+    def create_oai_chat_completion(self, messages, deployment):
+        response = self._oai_client.chat.completions.create(
+            model=deployment,
+            messages=messages,
+            max_tokens=100,
+            temperature=1.3,
+            top_p=0.95,
+            frequency_penalty=0.37,
+            presence_penalty=0.63,
+            stop=None,
+            stream=False
+        )
+        print(response, flush=True)
+        result = response.choices[0].message.content.strip()
+        if not result:
+            raise Exception
+        return result 

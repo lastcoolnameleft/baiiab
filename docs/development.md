@@ -13,7 +13,6 @@ NOTE: I don't know how to convert SVG to BMP in one step without the graphic tur
 
 https://learn.adafruit.com/mini-thermal-receipt-printer/bitmap-printing
 
-
-## Talking to printer via serial:
+## Talking to printer via serial
 
 https://github.com/adafruit/Python-Thermal-Printer/blob/678e13ae918deadf2b350b3f866a21de6ff1ad6d/README.md#getting-started
