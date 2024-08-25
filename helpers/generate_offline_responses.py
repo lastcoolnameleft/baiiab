@@ -13,7 +13,7 @@ from Baiiab import Baiiab
 load_dotenv()
 
 menu_file = "conf/menu.json"
-batch_count = 10
+batch_count = 60
 match_topic = 'Fake Facts'
 match_subtopic = 'DragonCon'
 
@@ -35,7 +35,7 @@ baiiab = Baiiab(None, oai_client)
 
 for topic in menu_data:
     print(topic)
-    if match_subtopic and topic != match_topic:
+    if match_topic and topic != match_topic:
         continue
     for subtopic in menu_data[topic]:
         if match_subtopic and subtopic != match_subtopic:
