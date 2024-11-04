@@ -1,4 +1,3 @@
-dotenv
 python-dotenv
-openai==0.28
+openai
 tenacity

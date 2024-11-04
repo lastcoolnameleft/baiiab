@@ -15,7 +15,7 @@ load_dotenv()
 menu_file = "conf/menu.json"
 batch_count = 60
 match_topic = 'Fake Facts'
-match_subtopic = 'DragonCon'
+match_subtopic = 'Darth Vader'
 
 with open(menu_file,"r") as f:
     menu_data = literal_eval(f.read())
@@ -43,7 +43,7 @@ for topic in menu_data:
         messages = menu_data[topic][subtopic]
         offline_file = baiiab.get_offline_location(topic, subtopic)
         print("processing " + offline_file)
-        offline_responses = {}
+        offline_responses = []
         
         if (exists(offline_file)):
             with open(offline_file,"r") as f:

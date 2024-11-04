@@ -16,3 +16,11 @@ https://learn.adafruit.com/mini-thermal-receipt-printer/bitmap-printing
 ## Talking to printer via serial
 
 https://github.com/adafruit/Python-Thermal-Printer/blob/678e13ae918deadf2b350b3f866a21de6ff1ad6d/README.md#getting-started
+
+## Generate offline responses
+
+```
+. ./venv/bin/activate
+# Update helpers/generate_offline_responses.py with the menu option to generate
+python helpers/generate_offline_responses.py
+```

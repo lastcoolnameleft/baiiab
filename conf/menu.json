@@ -6,7 +6,7 @@
         "Good": [{"role": "system", "content": "You are a helpful advice robot"}, {"role": "user", "content": "Give me some good advice."}]
     },
     "Fake Facts": {
-        "Homelander": [{"role": "system", "content": "you are a fan of the show 'The Boys'"}, {"role": "user", "content": "make up an absurd fact about the character Homelander in one sentence"}],
+        "Darth Vader": [{"role": "system", "content": "you are a fan of 'Star Wars'"}, {"role": "user", "content": "make up an absurd fact about the character Darth Vader in one sentence"}],
         "Creatures": [{"role": "system", "content": "you are a mythological vetrenarian"}, {"role": "user", "content": "give me a single, absurd fact about an mythological animal in a single sentence."}]
     },
     "Cocktail": {
