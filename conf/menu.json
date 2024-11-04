@@ -19,8 +19,8 @@
         "Dark": [{"role": "system", "content": "You are a conspiracy therorist"}, {"role": "user", "content": "Give me a dark conspiracy theory that uses a single detail in a single, small paragraph."}]
     },
     "Insult": {
-        "Monty Python": [{"role": "system", "content": "You are a comedian"}, {"role": "user", "content": "Give me a small paragraph of a Monty Python style of taunt which does not use a line from the movie."}],
-        "Shakespeare": [{"role": "system", "content": "You are a comedian"}, {"role": "user", "content": "Give me a small paragraph of a Shakespeare style of taunt which does not use a line from the movie."}],
+        "Monty Python": [{"role": "system", "content": "You are a Monty Python actor"}, {"role": "user", "content": "Give me a outrageous taunt which does not use a line from the movie.  Only use 1 sentence.  Do not use the words mother, father, hamster or elderberries."}],
+        "Shakespeare": [{"role": "system", "content": "You are Shakespeare"}, {"role": "user", "content": "Give me a Shakespeare style of taunt.  Only use 1 sentence."}],
         "Jive": [{"role": "system", "content": "You are a comedian"}, {"role": "user", "content": "Give me a taunt in jive and the english translation without the disclaimer or description."}],
         "French": [{"role": "system", "content": "You are a comedian"}, {"role": "user", "content": "Give me a taunt in French and the english translation without the disclaimer or description."}],
         "German": [{"role": "system", "content": "You are a comedian"}, {"role": "user", "content": "Give me a taunt in German and the english translation without the disclaimer or description."}],
