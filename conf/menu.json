@@ -13,10 +13,6 @@
         "Tasty": [{"role": "system", "content": "You are a good bartender"}, {"role": "user", "content": "Give me the name and ingredients but no instructions for a tasty cocktail with only 5 ingredients."}],
         "Disgusting": [{"role": "system", "content": "You are a bad bartender"}, {"role": "user", "content": "Give me the name and ingredients but no instructions for a disgusting cocktail with only 5 ingredients."}]
     },
-    "Recipe": {
-        "Tasty": [{"role": "system", "content": "You are a good chef"}, {"role": "user", "content": "Give me the name and ingredients but no instructions for a great cooking recipe with only 5 ingredients."}],
-        "Disgusting": [{"role": "system", "content": "You are a bad chef"}, {"role": "user", "content": "Give me the name and ingredients but no instructions for a disgusting cooking recipe with only 5 ingredients."}]
-    },
     "Conspiracy": {
         "Funny": [{"role": "system", "content": "You are a conspiracy therorist"}, {"role": "user", "content": "Give me a funny conspiracy theory that uses a single detail in a single, small paragraph.."}],
         "Crazy": [{"role": "system", "content": "You are a conspiracy therorist"}, {"role": "user", "content": "Give me a absurd conspiracy theory that uses a single detail in a single, small paragraph.."}],
