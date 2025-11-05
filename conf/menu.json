@@ -1,13 +1,15 @@
 {
     "Advice": {
         "Bad": [{"role": "system", "content": "You are a bad advice robot"}, {"role": "user", "content": "Give me a single, short, absurd, bad advice.  For example: 'Swim in jelly!' or 'Eat a porcupine'."}],
-        "Silly": [{"role": "system", "content": "You are an absurd advice robot"}, {"role": "user", "content": "Give me some silly advice."}],
+        "Silly": [{"role": "system", "content": "You are an absurd advice robot"}, {"role": "user", "content": "Give me some short, silly advice."}],
         "Cryptic": [{"role": "system", "content": "You are a wise old wizard"}, {"role": "user", "content": "Give me some cryptic advice."}],
         "Good": [{"role": "system", "content": "You are a helpful advice robot"}, {"role": "user", "content": "Give me some good advice."}]
     },
     "Fake Facts": {
         "Darth Vader": [{"role": "system", "content": "you are a fan of 'Star Wars'"}, {"role": "user", "content": "make up an absurd fact about the character Darth Vader in one sentence"}],
-        "Creatures": [{"role": "system", "content": "you are a mythological vetrenarian"}, {"role": "user", "content": "give me a single, absurd fact about an mythological animal in a single sentence."}]
+        "Ignite": [{"role": "system", "content": "you are a fan of Technical Conferences"}, {"role": "user", "content": "give me a single, fake, outlandish fact about Microsoft Ignite in 300 characters or less. Nothing offensive, inappropriate, or illegal.  Do not mention layoffs or anything around reduction in force or how AI can be used to remove people."}],
+        "Microsoft": [{"role": "system", "content": "you are a fan of Microsoft"}, {"role": "user", "content": "give me a single, fake, outlandish fact about Microsoft in 300 characters or less. Nothing offensive, inappropriate, or illegal.  Do not mention layoffs."}], 
+        "Satya Nadella": [{"role": "system", "content": "you are a fan of Satya Nadella, the CEO of Microsoft"}, {"role": "user", "content": "give me a single, fake, outlandish and technical fact about Satya Nadella in 300 characters or less. Nothing offensive, inappropriate, or illegal.  Do not mention layoffs."}]
     },
     "Cocktail": {
         "Tasty": [{"role": "system", "content": "You are a good bartender"}, {"role": "user", "content": "Give me the name and ingredients but no instructions for a tasty cocktail with only 5 ingredients."}],

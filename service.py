@@ -14,6 +14,30 @@ from openai import AzureOpenAI
 
 load_dotenv()
 
+# Initialize OpenTelemetry
+try:
+    from otel import setup_from_env, get_tracer
+    tracer, meter = setup_from_env()
+    service_tracer = get_tracer(__name__) if tracer else None
+    
+    # Create user interaction metrics
+    if meter:
+        interaction_counter = meter.create_counter(
+            "baiiab.user_interactions",
+            description="Number of user interactions",
+            unit="1"
+        )
+        menu_navigation_counter = meter.create_counter(
+            "baiiab.menu_navigation",
+            description="Menu navigation events",
+            unit="1"
+        )
+except ImportError:
+    service_tracer = None
+    interaction_counter = None
+    menu_navigation_counter = None
+    logging.warning("OpenTelemetry not available - telemetry disabled")
+
 logging.basicConfig(encoding='utf-8', level=logging.DEBUG,
                     handlers=[TimedRotatingFileHandler("/home/pi/baiiab/logs/baiiab.log", when="H", interval=1)])
 
@@ -29,32 +53,71 @@ lcd = I2cLcd(1, DEFAULT_I2C_ADDR, 4, 20)
 
 def clockwise_cb():
     logging.debug("prev")
-    screen.focus_prev()
+    if service_tracer:
+        with service_tracer.start_as_current_span("rotary_encoder.clockwise"):
+            menu_navigation_counter.add(1, {"direction": "clockwise"})
+            screen.focus_prev()
+    else:
+        screen.focus_prev()
 
 def counter_clockwise_cb():
     logging.debug("next")
-    screen.focus_next()
+    if service_tracer:
+        with service_tracer.start_as_current_span("rotary_encoder.counter_clockwise"):
+            menu_navigation_counter.add(1, {"direction": "counter_clockwise"})
+            screen.focus_next()
+    else:
+        screen.focus_next()
 
 def button_cb():
     logging.debug("push")
-    screen.choose()
+    if service_tracer:
+        with service_tracer.start_as_current_span("button.press"):
+            interaction_counter.add(1, {"interaction_type": "button_press"})
+            screen.choose()
+    else:
+        screen.choose()
 
 def action_callback(messages, menu_screen, title):
     topic = menu_screen.parent.title
     subtopic = title
     logging.info("callback action chosen.  topic=" + topic + ";subtopic=" + subtopic)
-    columns = menu_screen.columns
-    menu_screen.lcd.clear()
-    menu_screen.lcd.move_to(0, 0)
-    menu_screen.lcd.putstr("PRINTING YOU A:\n".center(columns) + subtopic.center(columns) + "\n" + topic.center(columns))
-    try:
-        advice = baiiab.create_oai_chat_completion(messages, azure_openai_deployment)
-    except:
-        logging.error("GOT EXCEPTION")
-        advice = baiiab.get_offline_advice(topic, subtopic)
-        baiiab.print_offline()
+    
+    if service_tracer:
+        with service_tracer.start_as_current_span("action_callback") as span:
+            span.set_attribute("topic", topic)
+            span.set_attribute("subtopic", subtopic)
+            interaction_counter.add(1, {"interaction_type": "action_selected", "topic": topic, "subtopic": subtopic})
+            
+            columns = menu_screen.columns
+            menu_screen.lcd.clear()
+            menu_screen.lcd.move_to(0, 0)
+            menu_screen.lcd.putstr("PRINTING YOU A:\n".center(columns) + subtopic.center(columns) + "\n" + topic.center(columns))
+            
+            try:
+                advice = baiiab.create_oai_chat_completion(messages, azure_openai_deployment)
+                span.set_attribute("response_source", "api")
+            except Exception as e:
+                logging.error("GOT EXCEPTION: %s", str(e))
+                span.record_exception(e)
+                span.set_attribute("response_source", "offline")
+                advice = baiiab.get_offline_advice(topic, subtopic)
+                baiiab.print_offline()
+            
+            baiiab.print_advice_long(advice, subtopic + " " + topic)
+    else:
+        columns = menu_screen.columns
+        menu_screen.lcd.clear()
+        menu_screen.lcd.move_to(0, 0)
+        menu_screen.lcd.putstr("PRINTING YOU A:\n".center(columns) + subtopic.center(columns) + "\n" + topic.center(columns))
+        try:
+            advice = baiiab.create_oai_chat_completion(messages, azure_openai_deployment)
+        except:
+            logging.error("GOT EXCEPTION")
+            advice = baiiab.get_offline_advice(topic, subtopic)
+            baiiab.print_offline()
 
-    baiiab.print_advice_long(advice, subtopic + " " + topic)
+        baiiab.print_advice_long(advice, subtopic + " " + topic)
 
 oai_client = AzureOpenAI(
     # This is the default and can be omitted

@@ -162,3 +162,7 @@ cython_debug/
 # Personal
 .env
 offline
+
+# OpenTelemetry logs
+logs/simulator_telemetry.log
+logs/*.log
