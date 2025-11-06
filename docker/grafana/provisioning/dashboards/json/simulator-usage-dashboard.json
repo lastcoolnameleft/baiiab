@@ -1,0 +1,102 @@
+{
+  "id": null,
+  "uid": "simulator-usage",
+  "title": "Simulator Usage (Last 5 Minutes)",
+  "tags": ["simulator", "usage", "baiiab"],
+  "timezone": "browser",
+  "schemaVersion": 16,
+  "version": 1,
+  "refresh": "30s",
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "type": "stat",
+        "title": "Total Interactions (5m)",
+        "datasource": "Prometheus",
+        "targets": [
+          {
+            "expr": "increase(baiiab_simulator_interactions_total[5m])",
+            "interval": "",
+            "legendFormat": "Total",
+            "refId": "A"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "color": {"mode": "palette-classic"},
+            "mappings": []
+          },
+          "overrides": []
+        },
+        "options": {
+          "reduceOptions": {"calcs": ["sum"], "fields": "", "values": false},
+          "orientation": "auto",
+          "textMode": "auto"
+        },
+        "gridPos": {"h": 4, "w": 6, "x": 0, "y": 0}
+      },
+      {
+        "type": "timeseries",
+        "title": "Interactions per Interval (5m)",
+        "datasource": "Prometheus",
+        "targets": [
+          {
+            "expr": "sum by (interaction_type) (increase(baiiab_simulator_interactions_total[5m]))",
+            "interval": "",
+            "legendFormat": "{{interaction_type}}",
+            "refId": "A"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "decimals": 0
+          },
+          "overrides": []
+        },
+        "options": {
+          "legend": {"displayMode": "list", "placement": "bottom"},
+          "tooltip": {"mode": "multi"}
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 6, "y": 0}
+      },
+      {
+        "type": "stat",
+        "title": "Error Count (5m)",
+        "datasource": "Prometheus",
+        "targets": [
+          {
+            "expr": "increase(baiiab_errors_total[5m])",
+            "interval": "",
+            "legendFormat": "Errors",
+            "refId": "A"
+          }
+        ],
+        "fieldConfig": {"defaults": {"unit": "short"}, "overrides": []},
+        "options": {"reduceOptions": {"calcs": ["sum"], "fields": "", "values": false}},
+        "gridPos": {"h": 4, "w": 6, "x": 0, "y": 4}
+      },
+      {
+        "type": "barchart",
+        "title": "Interactions by Type (5m)",
+        "datasource": "Prometheus",
+        "targets": [
+          {
+            "expr": "sum by (interaction_type) (increase(baiiab_simulator_interactions_total[5m]))",
+            "interval": "",
+            "legendFormat": "{{interaction_type}}",
+            "refId": "A"
+          }
+        ],
+        "fieldConfig": {"defaults": {"unit": "short"}, "overrides": []},
+        "options": {"orientation": "horizontal"},
+        "gridPos": {"h": 8, "w": 12, "x": 6, "y": 4}
+      }
+    ],
+  "templating": {"list": []},
+  "annotations": {"list": []}
+}

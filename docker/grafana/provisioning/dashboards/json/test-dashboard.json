@@ -1,13 +1,11 @@
 {
-  "dashboard": {
-    "id": null,
-    "uid": "test-dashboard",
-    "title": "Test Dashboard",
-    "tags": ["test"],
-    "timezone": "browser",
-    "schemaVersion": 16,
-    "version": 0,
-    "refresh": "5s"
-  },
-  "overwrite": true
+  "id": null,
+  "uid": "test-dashboard",
+  "title": "Test Dashboard",
+  "tags": ["test"],
+  "timezone": "browser",
+  "schemaVersion": 16,
+  "version": 0,
+  "refresh": "5s",
+  "panels": []
 }
