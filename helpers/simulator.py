@@ -148,7 +148,7 @@ def action_callback(messages, menu_screen, title, baiiab, azure_openai_deploymen
             span.set_attribute("topic", topic)
             span.set_attribute("subtopic", subtopic)
             span.set_attribute("mode", "simulator")
-            simulator_interaction_counter.add(1, {"interaction_type": "action_selected", "topic": topic})
+            simulator_interaction_counter.add(1, {"interaction_type": "action_selected", "topic": topic, "subtopic": subtopic})
             
             menu_screen.lcd.clear()
             menu_screen.lcd.move_to(0, 0)
