@@ -25,8 +25,8 @@ from opentelemetry.sdk.metrics.export import (
     MetricExportResult,
 )
 from opentelemetry.sdk.resources import Resource, SERVICE_NAME, SERVICE_VERSION
-from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
-from opentelemetry.exporter.otlp.proto.grpc.metric_exporter import OTLPMetricExporter
+from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
+from opentelemetry.exporter.otlp.proto.http.metric_exporter import OTLPMetricExporter
 from opentelemetry.instrumentation.logging import LoggingInstrumentor
 from typing import Sequence
 
@@ -193,39 +193,45 @@ def setup_telemetry(
         logger.info(f"File span exporter enabled: {file_path}")
     
     if use_otlp_exporter and otlp_endpoint:
-        # Determine if we should use secure connection (TLS)
-        # Use secure if port is 443 or if headers are present (cloud services)
-        use_secure = ":443" in otlp_endpoint or otlp_headers is not None
-        
         # Parse headers if provided as string
         headers_dict = None
         if otlp_headers:
             if isinstance(otlp_headers, str):
                 # Parse "key1=value1,key2=value2" format
-                # gRPC metadata keys must be lowercase
                 headers_dict = {}
                 for pair in otlp_headers.split(','):
                     if '=' in pair:
                         key, value = pair.split('=', 1)
-                        headers_dict[key.strip().lower()] = value.strip()
+                        headers_dict[key.strip()] = value.strip()
             else:
-                # Ensure dictionary keys are lowercase for gRPC
-                headers_dict = {k.lower(): v for k, v in otlp_headers.items()}
+                headers_dict = otlp_headers
         
-        # Create OTLP span exporter with appropriate security settings
-        exporter_kwargs = {
-            "endpoint": otlp_endpoint,
-            "insecure": not use_secure
-        }
+        # HTTP exporter expects full URL with scheme
+        # If no scheme provided, auto-detect based on port
+        if not otlp_endpoint.startswith(('http://', 'https://')):
+            if ':443' in otlp_endpoint or headers_dict:
+                endpoint_url = f"https://{otlp_endpoint}"
+            else:
+                endpoint_url = f"http://{otlp_endpoint}"
+        else:
+            endpoint_url = otlp_endpoint
+        
+        # Add /v1/traces path if not present
+        if not endpoint_url.endswith(('/v1/traces', '/v1/metrics')):
+            trace_endpoint = f"{endpoint_url}/v1/traces"
+        else:
+            trace_endpoint = endpoint_url
+        
+        # Create OTLP span exporter (HTTP)
+        exporter_kwargs = {"endpoint": trace_endpoint}
         if headers_dict:
             exporter_kwargs["headers"] = headers_dict
         
         otlp_span_exporter = OTLPSpanExporter(**exporter_kwargs)
         tracer_provider.add_span_processor(BatchSpanProcessor(otlp_span_exporter))
         
-        security_mode = "secure (TLS)" if use_secure else "insecure"
-        headers_info = f" with headers" if headers_dict else ""
-        logger.info(f"OTLP span exporter enabled: {otlp_endpoint} ({security_mode}{headers_info})")
+        headers_info = f" with auth" if headers_dict else ""
+        logger.info(f"OTLP span exporter enabled: {trace_endpoint} (HTTP{headers_info})")
     
     trace.set_tracer_provider(tracer_provider)
     
@@ -248,28 +254,35 @@ def setup_telemetry(
     
     # Only export metrics to OTLP if not traces_only (Jaeger doesn't support metrics)
     if use_otlp_exporter and otlp_endpoint and not otlp_traces_only:
-        # Use same security settings as traces
-        use_secure = ":443" in otlp_endpoint or otlp_headers is not None
-        
         # Parse headers if provided
         headers_dict = None
         if otlp_headers:
             if isinstance(otlp_headers, str):
-                # gRPC metadata keys must be lowercase
                 headers_dict = {}
                 for pair in otlp_headers.split(','):
                     if '=' in pair:
                         key, value = pair.split('=', 1)
-                        headers_dict[key.strip().lower()] = value.strip()
+                        headers_dict[key.strip()] = value.strip()
             else:
-                # Ensure dictionary keys are lowercase for gRPC
-                headers_dict = {k.lower(): v for k, v in otlp_headers.items()}
+                headers_dict = otlp_headers
         
-        # Create OTLP metric exporter with appropriate security settings
-        exporter_kwargs = {
-            "endpoint": otlp_endpoint,
-            "insecure": not use_secure
-        }
+        # HTTP exporter expects full URL with scheme
+        if not otlp_endpoint.startswith(('http://', 'https://')):
+            if ':443' in otlp_endpoint or headers_dict:
+                endpoint_url = f"https://{otlp_endpoint}"
+            else:
+                endpoint_url = f"http://{otlp_endpoint}"
+        else:
+            endpoint_url = otlp_endpoint
+        
+        # Add /v1/metrics path if not present
+        if not endpoint_url.endswith(('/v1/traces', '/v1/metrics')):
+            metrics_endpoint = f"{endpoint_url}/v1/metrics"
+        else:
+            metrics_endpoint = endpoint_url
+        
+        # Create OTLP metric exporter (HTTP)
+        exporter_kwargs = {"endpoint": metrics_endpoint}
         if headers_dict:
             exporter_kwargs["headers"] = headers_dict
         
@@ -279,9 +292,8 @@ def setup_telemetry(
         )
         metric_readers.append(otlp_metric_reader)
         
-        security_mode = "secure (TLS)" if use_secure else "insecure"
-        headers_info = f" with headers" if headers_dict else ""
-        logger.info(f"OTLP metric exporter enabled: {otlp_endpoint} ({security_mode}{headers_info})")
+        headers_info = f" with auth" if headers_dict else ""
+        logger.info(f"OTLP metric exporter enabled: {metrics_endpoint} (HTTP{headers_info})")
     elif use_otlp_exporter and otlp_traces_only:
         logger.info("OTLP metrics disabled (traces only mode for Jaeger)")
     
@@ -319,6 +331,8 @@ def setup_from_env():
         OTEL_SERVICE_NAME: Service name (default: "baiiab")
         OTEL_SERVICE_VERSION: Service version (default: "1.0.0")
         OTEL_CONSOLE_EXPORTER: Enable console exporter (default: "true")
+        OTEL_FILE_EXPORTER: Enable file exporter (default: "false")
+        OTEL_FILE_PATH: Path for file exporter (default: "logs/telemetry.jsonl")
         OTEL_EXPORTER_OTLP_ENDPOINT: OTLP endpoint URL
         OTEL_EXPORTER_OTLP_HEADERS: Headers for authentication (format: key1=value1,key2=value2)
         OTEL_EXPORTER_OTLP_TRACES_ONLY: Only send traces, not metrics (default: "true")
@@ -334,6 +348,8 @@ def setup_from_env():
     service_name = os.getenv("OTEL_SERVICE_NAME", "baiiab")
     service_version = os.getenv("OTEL_SERVICE_VERSION", "1.0.0")
     use_console = os.getenv("OTEL_CONSOLE_EXPORTER", "true").lower() == "true"
+    use_file = os.getenv("OTEL_FILE_EXPORTER", "false").lower() == "true"
+    file_path = os.getenv("OTEL_FILE_PATH", "logs/telemetry.jsonl")
     otlp_endpoint = os.getenv("OTEL_EXPORTER_OTLP_ENDPOINT")
     otlp_headers = os.getenv("OTEL_EXPORTER_OTLP_HEADERS")
     
@@ -345,6 +361,8 @@ def setup_from_env():
         service_name=service_name,
         service_version=service_version,
         use_console_exporter=use_console,
+        use_file_exporter=use_file,
+        file_path=file_path,
         use_otlp_exporter=bool(otlp_endpoint),
         otlp_endpoint=otlp_endpoint,
         otlp_headers=otlp_headers,

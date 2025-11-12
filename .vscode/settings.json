@@ -1,8 +1,9 @@
 {
     "sync-rsync.local": "/Users/thfalgou/git/lastcoolnameleft/baiiab",
     "sync-rsync.remote.bak": "pi@aibox:/home/pi/baiiab",
-    "sync-rsync.remote": "pi@rpi0w-1:/home/pi/baiiab",
+    "sync-rsync.remote": "pi@baiiab2:/home/pi/baiiab",
+    //"sync-rsync.remote": "pi@rpi0w-1:/home/pi/baiiab",
     "sync-rsync.onSave": true,
-    "sync-rsync.exclude": [".git", "tmp", "logs", "venv"],
+    "sync-rsync.exclude": [".git", "tmp", "logs", "venv", ".env"],
     "python.pythonPath": "/usr/local/opt/python/bin/python3.7"
 }

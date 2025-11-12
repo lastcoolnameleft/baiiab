@@ -16,19 +16,19 @@ Tommy Falgout: Principal Partner Solution Architect @ Microsoft
 
 ---
 
-## The Inspiration
+## WHY?!?!
 
 **Make AI Intriguing and Silly, Not Scary**
 
-- AI can feel intimidating and complex
+- Inspired by friends "[Fortune Witch](https://www.olisny.com/fortune-witch/)" 
 - Wanted to create something **tangible** and **fun**
-- Physical interaction makes AI more approachable
-- Inspired by Adafruit and friends projects
-- Access AI through simple hardware
+- AI can feel intimidating and complex
+- Physical interaction makes more approachable
+- Build upon [Adafruit project](https://learn.adafruit.com/pi-thermal-printer)
 
 > *"What if interfacing with AI could be as simple as turning a knob?"*
 
-![bg right:50% w:600](https://i.ytimg.com/vi/_tY3fxE0qaY/maxresdefault.jpg)
+![bg right:45% w:600](img/yt.jpg)
 
 ---
 
@@ -37,13 +37,11 @@ Tommy Falgout: Principal Partner Solution Architect @ Microsoft
 Started as a learning exercise...
 
 1. **Initial Goal**: Learn this newfangled ChatGPT thingy
-2. **First Iteration**: Website that gave you bad advice ...
+2. **First Iteration**: [Bad Advice As A Service (BaaaS)](https://advice.lastcoolnameleft.com/)
 3. **Physical Interface**: Added Raspberry Pi + LCD + Dial
-4. **Menu System**: Interactive categories and options
+4. **Offline Mode**: If WiFi / Tethering fails
 5. **Observability**: Integrated OpenTelemetry
 6. **Cloud Integration**: Connected to Elastic's Observability Platform
-
-**Project took legs of its own!**
 
 ---
 
@@ -69,7 +67,7 @@ Started as a learning exercise...
 
 | Component | Purpose |
 |-----------|---------|
-| **Raspberry Pi Zero W** | Main computer (1 core) |
+| **Raspberry Pi Zero W** | 1 core, Debian based |
 | **20x4 LCD Display** | Show navigation menus |
 | **Rotary Encoder** | Navigation (turn + push) |
 | **Thermal Printer** | Receipt paper output |
@@ -143,15 +141,13 @@ Started as a learning exercise...
 
 ## Content Categories 
 
-- **Jokes** - Dad jokes, funny, absurd
-- **Advice** - Good, bad, cryptic, silly
-- **Recipes** - Tasty or... questionable
-- **Insults** - Shakespeare, Monty Python style
-- **Cocktails** - Creative drink recipes
-- **Conspiracies** - Fun theories
-- **Fake Facts** - About anything!
-- **Affirmations** - Positive messages
-- **Inspiration** - Motivational quotes
+Stored in config file: **Topic -> Subtopic -> Prompt**
+
+- Advice - Bad, Silly, Cryptic, Good
+- Fake Facts - Darth Vader, Satya Nadella
+- Cocktail - Tasty, Disgusting
+- Conspiracy - Funny, Crazy, Dark
+- Insult - Monty Python, Shakespeare, French, German, Spanish
 
 *All powered by Azure OpenAI (GPT-4)*
 
@@ -206,8 +202,6 @@ Started as a learning exercise...
 
 ![bg right:50% w:600](img/kibana.png)
 
-
-
 ---
 
 ## Community Impact 
@@ -229,51 +223,24 @@ Started as a learning exercise...
 - Observability patterns
 - Physical computing + AI
 
----
-
-## Try It Yourself! 🎯
-
-### Get Started
-
-```bash
-# Clone the repository
-git clone https://github.com/lastcoolnameleft/baiiab
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Configure Azure OpenAI
-cp .env.example .env
-# Edit .env with your credentials
-
-# Run simulator (no hardware needed!)
-python3 simulator.py
-
-# Or run on Raspberry Pi
-python3 Baiiab.py
-```
-
-**Full documentation** at: github.com/lastcoolnameleft/baiiab
 
 ---
 
-## The Numbers 📊
+## The Numbers
 
 ### Project Stats
 
 - **Lines of Code**: ~2,500
-- **Dependencies**: 15 Python packages
-- **Categories**: 9 content types
-- **Subcategories**: 50+ variations
+- **Topics**: 5 "main" ones
+- **Subtopics**: 2-5+ each topic
 - **Cost per request**: ~$0.02 (GPT-4)
 - **Response time**: 2-3 seconds average
 - **Conference demos**: 100+ interactions
-- **GitHub stars**: Growing! ⭐
 
 ---
 
 
-## Why This Matters 🎯
+## Why This Matters
 
 ### Beyond the Novelty
 
@@ -296,7 +263,7 @@ python3 Baiiab.py
 
 ---
 
-## Elastic Observability Integration 🔍
+## Elastic Observability Integration
 
 ### Why Elastic?
 
@@ -319,51 +286,7 @@ python3 Baiiab.py
 
 ---
 
-## Demo: Live Observability 📺
-
-### What You'd See
-
-**In Kibana:**
-1. Trace timeline for each user interaction
-2. Span details: API call, LCD update, printer
-3. Error tracking and stack traces
-4. Service maps showing dependencies
-
-**In Grafana:**
-1. Real-time metric dashboards
-2. 5-minute interaction windows
-3. Response time distributions
-4. Popular content analysis
-
-*All from one rotary encoder turn!*
-
----
-
-## Cost & Performance Optimization 💰
-
-### Insights from Observability
-
-**Discoveries:**
-- 80% of requests are < 2 seconds
-- Most popular: Dad Jokes (35%)
-- Peak usage: Conference hours
-- Offline mode used 15% of time
-
-**Optimizations Made:**
-- Caching frequent responses
-- Batching printer operations
-- Pre-warming common queries
-- Rate limiting protection
-
-*Reduced costs by 40% after first month*
-
-
-
----
-
-## Challenges Overcome 🎢
-
-### What We Learned
+## Challenges Overcome 
 
 **Hardware:**
 - I2C address conflicts → solved with detection
@@ -378,26 +301,6 @@ python3 Baiiab.py
 **Observability:**
 - Console output interference → file-based export
 - Metric label consistency → standardized schema
-
----
-
-## Community Contributions Welcome! 🤝
-
-### How to Get Involved
-
-**Ways to Contribute:**
-- 📝 Add new content categories
-- 🐛 Report bugs and issues  
-- 💡 Suggest features
-- 🔧 Submit pull requests
-- 📚 Improve documentation
-- 🎨 Design better enclosures
-- 📊 Create new dashboards
-
-**Join the conversation:**
-- GitHub Discussions
-- Issues and PRs
-- Share your builds!
 
 ---
 
@@ -427,7 +330,7 @@ python3 Baiiab.py
 ---
 
 
-## Q&A: Common Questions ❓
+## FAQ
 
 **Q: Why Raspberry Pi?**
 A: Affordable, powerful, great GPIO support, huge community
@@ -437,10 +340,6 @@ A: Yes! Works with any OpenAI-compatible API
 
 **Q: Can it work offline?**
 A: Yes! Fallback mode with pre-generated content
-
----
-
-## Q&A: Technical Questions 🔧
 
 **Q: Why OpenTelemetry?**
 A: Vendor-neutral, future-proof, rich ecosystem
@@ -470,38 +369,19 @@ A: Absolutely! Edit conf/menu.json
 ### Learn More
 
 **Code & Documentation:**
-- GitHub: github.com/lastcoolnameleft/baiiab
+- GitHub: [github.com/lastcoolnameleft/baiiab](https://github.com/lastcoolnameleft/baiiab)
 - Issues & PRs welcome!
 
 **Technologies:**
-- OpenTelemetry: opentelemetry.io
-- Elastic Observability: elastic.co/observability
-- Azure OpenAI: azure.microsoft.com/openai
-- Raspberry Pi: raspberrypi.org
+- OpenTelemetry: [opentelemetry.io](https://opentelemetry.io)
+- Elastic Observability: [elastic.co/observability](https://elastic.co/observability)
+- Azure OpenAI: [azure.microsoft.com/openai](https://azure.microsoft.com/openai)
+- Raspberry Pi: [raspberrypi.org](https://raspberrypi.org)
 
 **Presentations:**
 - Microsoft Build 2024 Keynote
 - Conference talks & demos
 
----
-
-## Connect 🔗
-
-### Stay in Touch
-
-**Project Updates:**
-- ⭐ Star the repo on GitHub
-- 👀 Watch for new releases
-- 🐛 Report issues
-- 💡 Share ideas
-
-**Community:**
-- Share your builds!
-- Post modifications
-- Contribute code
-- Write about your experience
-
-*Let's make AI fun and observable together!*
 
 ---
 

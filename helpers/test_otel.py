@@ -45,10 +45,10 @@ except ImportError:
     sys.exit(1)
 
 try:
-    from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
-    print("✓ opentelemetry-exporter-otlp installed")
+    from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
+    print("✓ opentelemetry-exporter-otlp-proto-http installed")
 except ImportError:
-    print("✗ opentelemetry-exporter-otlp NOT installed")
+    print("✗ opentelemetry-exporter-otlp-proto-http NOT installed")
     sys.exit(1)
 
 # Check configuration module

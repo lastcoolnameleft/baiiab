@@ -1,11 +1,16 @@
 python-dotenv
 openai
 tenacity
+urllib3
+protobuf
 
 # OpenTelemetry packages
 opentelemetry-api
 opentelemetry-sdk
-opentelemetry-exporter-otlp
+opentelemetry-proto
+# Use HTTP exporter instead of gRPC (lighter, no grpcio dependency)
+opentelemetry-exporter-otlp-proto-http
+opentelemetry-exporter-otlp-proto-common
 opentelemetry-instrumentation
 opentelemetry-instrumentation-requests
 opentelemetry-instrumentation-logging
