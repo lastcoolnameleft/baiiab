@@ -113,12 +113,36 @@ class FileMetricExporter(MetricExporter):
                 for resource_metric in metrics_data.resource_metrics:
                     for scope_metric in resource_metric.scope_metrics:
                         for metric in scope_metric.metrics:
+                            # Extract actual metric values from data points
+                            metric_values = []
+                            data = metric.data
+                            
+                            # Handle different metric types
+                            if hasattr(data, 'data_points'):
+                                for point in data.data_points:
+                                    point_info = {
+                                        "attributes": dict(point.attributes) if hasattr(point, 'attributes') and point.attributes else {},
+                                        "time_unix_nano": point.time_unix_nano if hasattr(point, 'time_unix_nano') else None,
+                                    }
+                                    
+                                    # Get the actual value based on metric type
+                                    if hasattr(point, 'value'):
+                                        point_info["value"] = point.value
+                                    elif hasattr(point, 'sum'):
+                                        point_info["sum"] = point.sum
+                                        if hasattr(point, 'count'):
+                                            point_info["count"] = point.count
+                                    elif hasattr(point, 'count'):
+                                        point_info["count"] = point.count
+                                    
+                                    metric_values.append(point_info)
+                            
                             metric_dict = {
                                 "timestamp": datetime.now().isoformat(),
                                 "name": metric.name,
                                 "description": metric.description,
                                 "unit": metric.unit,
-                                "data": str(metric.data)
+                                "data_points": metric_values
                             }
                             f.write(json.dumps(metric_dict) + "\n")
             return MetricExportResult.SUCCESS

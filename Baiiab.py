@@ -55,6 +55,21 @@ class Baiiab:
                 description="Number of errors encountered",
                 unit="1"
             )
+            self.token_usage_counter = self.meter.create_counter(
+                "baiiab.tokens_used",
+                description="Number of tokens consumed by API calls",
+                unit="tokens"
+            )
+            self.prompt_tokens_counter = self.meter.create_counter(
+                "baiiab.prompt_tokens",
+                description="Number of prompt tokens used",
+                unit="tokens"
+            )
+            self.completion_tokens_counter = self.meter.create_counter(
+                "baiiab.completion_tokens",
+                description="Number of completion tokens generated",
+                unit="tokens"
+            )
         else:
             self.tracer = None
             self.meter = None
@@ -234,6 +249,22 @@ class Baiiab:
                     duration_ms = (time.time() - start_time) * 1000
                     self.api_duration_histogram.record(duration_ms, {"model": deployment})
                     span.set_attribute("duration_ms", duration_ms)
+                    
+                    # Record token usage if available
+                    if hasattr(response, 'usage') and response.usage:
+                        prompt_tokens = response.usage.prompt_tokens
+                        completion_tokens = response.usage.completion_tokens
+                        total_tokens = response.usage.total_tokens
+                        
+                        # Record token metrics
+                        self.token_usage_counter.add(total_tokens, {"model": deployment})
+                        self.prompt_tokens_counter.add(prompt_tokens, {"model": deployment})
+                        self.completion_tokens_counter.add(completion_tokens, {"model": deployment})
+                        
+                        # Add to span attributes
+                        span.set_attribute("tokens.prompt", prompt_tokens)
+                        span.set_attribute("tokens.completion", completion_tokens)
+                        span.set_attribute("tokens.total", total_tokens)
                     
                     print(response, flush=True)
                     content = response.choices[0].message.content
