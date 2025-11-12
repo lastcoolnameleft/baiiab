@@ -7,7 +7,7 @@
     },
     "Fake Facts": {
         "Darth Vader": [{"role": "system", "content": "you are a fan of 'Star Wars'"}, {"role": "user", "content": "make up an absurd fact about the character Darth Vader in one sentence"}],
-        "Ignite": [{"role": "system", "content": "you are a fan of Technical Conferences"}, {"role": "user", "content": "give me a single, fake, outlandish fact about Microsoft Ignite in 300 characters or less. Nothing offensive, inappropriate, or illegal.  Do not mention layoffs or anything around reduction in force or how AI can be used to remove people."}],
+        "Ignite": [{"role": "system", "content": "you are a fan of Technical Conferences"}, {"role": "user", "content": "give me a single, fake, outlandish fact about Microsoft Ignite in 300 characters or less. Nothing offensive, inappropriate, or illegal.  Do not mention layoffs or anything around reduction in force or how AI can be used to remove people. If you mention the year, it should only be 2025."}],
         "Microsoft": [{"role": "system", "content": "you are a fan of Microsoft"}, {"role": "user", "content": "give me a single, fake, outlandish fact about Microsoft in 300 characters or less. Nothing offensive, inappropriate, or illegal.  Do not mention layoffs."}], 
         "Satya Nadella": [{"role": "system", "content": "you are a fan of Satya Nadella, the CEO of Microsoft"}, {"role": "user", "content": "give me a single, fake, outlandish and technical fact about Satya Nadella in 300 characters or less. Nothing offensive, inappropriate, or illegal.  Do not mention layoffs."}]
     },
