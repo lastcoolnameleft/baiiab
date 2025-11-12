@@ -6,6 +6,7 @@ Description=Bad AI In A Box
 After=multi-user.target
 [Service]
 User=pi
+Group=pi
 Type=simple
 Restart=always
 WorkingDirectory=/home/pi/baiiab
