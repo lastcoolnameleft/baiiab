@@ -13,6 +13,29 @@ import argparse
 
 load_dotenv()
 
+# Initialize OpenTelemetry
+try:
+    from otel import setup_from_env, get_tracer, get_meter
+    tracer, meter = setup_from_env()
+    script_tracer = get_tracer(__name__) if tracer else None
+    
+    # Create metrics for offline response generation
+    if meter:
+        generation_counter = meter.create_counter(
+            "offline_responses.generated",
+            description="Number of offline responses generated",
+            unit="1"
+        )
+        generation_error_counter = meter.create_counter(
+            "offline_responses.errors",
+            description="Number of errors during offline response generation",
+            unit="1"
+        )
+except ImportError:
+    script_tracer = None
+    generation_counter = None
+    generation_error_counter = None
+
 menu_file = "conf/menu.json"
 batch_count = 60
 parser = argparse.ArgumentParser(description="Generate offline responses.")
@@ -80,16 +103,48 @@ for topic in menu_data:
                 with open(offline_file,"r") as f:
                     offline_responses = literal_eval(f.read())
 
-        for i in range(batch_count):
-            try:
-                advice = baiiab.create_oai_chat_completion(messages, azure_openai_deployment)
-                if not is_save:
-                    print(advice)
-                else:
-                    offline_responses.append(advice)
-            except Exception as e:
-                print("GOT EXCEPTION")
-                print(e)
+        # Create span for this topic/subtopic batch
+        if script_tracer:
+            with script_tracer.start_as_current_span("generate_offline_batch") as batch_span:
+                batch_span.set_attribute("topic", topic)
+                batch_span.set_attribute("subtopic", subtopic)
+                batch_span.set_attribute("batch_count", batch_count)
+                batch_span.set_attribute("save_mode", is_save)
+                
+                success_count = 0
+                error_count = 0
+                
+                for i in range(batch_count):
+                    try:
+                        advice = baiiab.create_oai_chat_completion(messages, azure_openai_deployment)
+                        if not is_save:
+                            print(advice)
+                        else:
+                            offline_responses.append(advice)
+                        success_count += 1
+                        if generation_counter:
+                            generation_counter.add(1, {"topic": topic, "subtopic": subtopic})
+                    except Exception as e:
+                        print("GOT EXCEPTION")
+                        print(e)
+                        error_count += 1
+                        if generation_error_counter:
+                            generation_error_counter.add(1, {"topic": topic, "subtopic": subtopic, "error_type": type(e).__name__})
+                
+                batch_span.set_attribute("success_count", success_count)
+                batch_span.set_attribute("error_count", error_count)
+        else:
+            # No telemetry - original behavior
+            for i in range(batch_count):
+                try:
+                    advice = baiiab.create_oai_chat_completion(messages, azure_openai_deployment)
+                    if not is_save:
+                        print(advice)
+                    else:
+                        offline_responses.append(advice)
+                except Exception as e:
+                    print("GOT EXCEPTION")
+                    print(e)
 
         if is_save:
             with open(offline_file, "w") as outfile:

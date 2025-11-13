@@ -13,6 +13,12 @@ backgroundImage: url('https://marp.app/assets/hero-background.svg')
 *Making AI "Touch Grass"*
 Tommy Falgout
 
+<!--
+Talk about Ignite
+Showcasing passion projects
+Partnership with Ignite
+-->
+
 ---
 
 # Me
@@ -75,6 +81,8 @@ Started as a learning exercise...
 [Demonstrated live on stage](https://youtu.be/KIFDVOXMNDc?t=3233):
 - 1000+ live audience
 - 10k YouTube views
+
+## Prep for Ignite!
 
 ![bg right:35% w:400](img/build-keynote.png)
 
@@ -349,6 +357,13 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 ---
 
+## Ignite
+
+- [Register here](https://ignite.microsoft.com/en-US/home) - Free online pass
+
+
+---
+
 
 ## FAQ
 
@@ -378,13 +393,12 @@ A: Absolutely! Edit conf/menu.json
 3. 📊 **Observable** - understand usage from day one
 4. 🔌 **Resilient** - works online and offline
 5. 🌐 **Open Source** - learn, share, improve
-6. 🎤 **Proven** - demo'd at Microsoft Build keynote
 7. 💰 **Affordable** - ~$150-200 in parts
 8. 🚀 **Extensible** - add features without complexity
 
 ---
 
-## Resources 📚
+## Resources
 
 ### Learn More
 
