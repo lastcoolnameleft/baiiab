@@ -8,11 +8,28 @@ backgroundImage: url('https://marp.app/assets/hero-background.svg')
 
 <!-- _class: lead -->
 
-# **BAIIAB**
-## Bad AI In A Box
+# Bad AI In A Box (**BAIIAB**)
 
 *Making AI "Touch Grass"*
-Tommy Falgout: Principal Partner Solution Architect @ Microsoft
+Tommy Falgout
+
+---
+
+# Me
+
+- Big maker nerd
+  - [LEGO Robo-Clippy](https://github.com/lastcoolnameleft/robo-clippy)
+  - [Bad AI In A Box](https://github.com/lastcoolnameleft/baiiab)
+  - [LED Lanyard](https://ledlanyard.com)
+  - [NTX Makers](https://www.ntxmakers.com/)
+- Partner Solution Architect @ Microsoft (ex-Yahoo!, ex-Nortel)
+- [Trebuchet expert for Dude Perfect](https://www.imdb.com/name/nm9305352/) (S2.E6)
+
+![bg right:50% w:600](img/halloween.png)
+
+<!--
+_footer: Source: me
+-->
 
 ---
 
@@ -40,8 +57,10 @@ Started as a learning exercise...
 2. **First Iteration**: [Bad Advice As A Service (BaaaS)](https://advice.lastcoolnameleft.com/)
 3. **Physical Interface**: Added Raspberry Pi + LCD + Dial
 4. **Offline Mode**: If WiFi / Tethering fails
-5. **Observability**: Integrated OpenTelemetry
+5. **Observability**: Added OpenTelemetry
 6. **Cloud Integration**: Connected to Elastic's Observability Platform
+
+![bg right:40% w:500](img/baaas.png)
 
 ---
 
@@ -117,9 +136,40 @@ Started as a learning exercise...
 
 ---
 
-## The Interface 
+## The Box
 
-### Rotary Encoder
+![bg right:50% w:600](img/the-internet.jpg)
+
+* Designed in OpenSCAD + Tinkercad
+* Inspired by "The Internet"
+* 3D Printed (PLA)
+* Holes for thermal printer, knobs, display
+
+---
+
+## OpenSCAD
+
+* 3D Modeler for programmers
+* Enables parametric design
+* Customize knob
+
+![bg right:60% w:700](img/openscad.png)
+
+---
+
+## The Interface
+
+Inspired by my Prusa i3 MK3 printer interface
+
+* Uses a 20x4 character LCD display
+* Re-wrote interface in Python
+
+
+![bg right:50% w:600](img/prusa.webp)
+
+---
+
+## Rotary Encoder
 
 1. **Turn Clockwise** ↻
    - Navigate down through menu options
@@ -130,6 +180,8 @@ Started as a learning exercise...
 3. **Push Button** 🔘
    - Select current option
    - Generate AI response
+
+**Callbacks handled in Python**
 
 **That's it!** No keyboard, no mouse, no touch screen.
 
@@ -167,6 +219,7 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 | **Raspberry Pi** | Affordable, powerful, GPIO support, __low power__|
 | **Python** | Fast prototyping, rich libraries |
 | **20x4 LCD** | Perfect size, cheap, reliable |
+| **3D Print** | Reproducable, custom design |
 | **Rotary Encoder** | Intuitive, tactile feedback |
 | **OpenTelemetry** | Vendor-neutral, future-proof |
 | **Azure OpenAI** | GPT-4 access, company perk |
@@ -182,6 +235,7 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 - API performance
 - Error rates and patterns
 - Most popular requests
+- How much this is costing Microsoft...
 
 **Connected to Elastic's Observability Platform**
 - Real-time traces
@@ -204,28 +258,6 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 ---
 
-## Community Impact 
-
-### What This Represents
-
-**For Developers:**
-- Reference implementation for AI + hardware
-- OpenTelemetry best practices
-- Raspberry Pi project inspiration
-
-**For Users:**
-- Approachable AI interaction
-- Fun conversation piece
-- Educational tool
-
-**For Industry:**
-- Edge AI demonstrations
-- Observability patterns
-- Physical computing + AI
-
-
----
-
 ## The Numbers
 
 ### Project Stats
@@ -239,27 +271,20 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 ---
 
-
-## Why This Matters
-
-### Beyond the Novelty
+## Beyond the Novelty
 
 **Physical AI interfaces:**
 - Bridge digital-physical divide
 - Make AI accessible to non-technical users
 - Create memorable experiences
-- Enable new interaction patterns
 
 **Observability:**
 - Understand user behavior
-- Optimize costs and performance
 - Debug production issues
-- Drive business decisions
 
 **Open Source:**
-- Learn from real implementations
-- Contribute improvements
-- Build community
+- Share learning pains
+- "With enough eyes, all bugs are shallow..."
 
 ---
 
@@ -270,37 +295,24 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 **Unified Platform:**
 - Logs, metrics, traces in one place
 - APM for application performance
-- Infrastructure monitoring
 - Custom dashboards and alerts
 
 **OTLP Support:**
 - Native OpenTelemetry ingestion
-- No vendor lock-in
-- Standard protocols
 - Easy migration
-
-**Powerful Query Language:**
-- KQL for deep analysis
-- Real-time aggregations
-- Custom visualizations
 
 ---
 
 ## Challenges Overcome 
 
 **Hardware:**
-- I2C address conflicts → solved with detection
-- LCD refresh rate → optimized update patterns
-- Encoder debouncing → added software filtering
+- Make it fit → custom cables, box
+- Periphals → Lots of failing in prod
+- Encoder debouncing → added sleep(?)
 
 **Software:**
 - API timeout handling → retry logic + offline mode
 - Menu navigation logic → state machine pattern
-- Multi-endpoint OTLP → custom configuration system
-
-**Observability:**
-- Console output interference → file-based export
-- Metric label consistency → standardized schema
 
 ---
 
@@ -326,6 +338,7 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 - ~~Audio~~ - Not good for conferences
 - ~~Local LLM~~ - 1 Core CPU
 - Mobile?  IoT?  Camera?
+- Print out cost?
 
 ---
 
@@ -359,7 +372,7 @@ A: Absolutely! Edit conf/menu.json
 4. 🔌 **Resilient** - works online and offline
 5. 🌐 **Open Source** - learn, share, improve
 6. 🎤 **Proven** - demo'd at Microsoft Build keynote
-7. 💰 **Affordable** - ~$100 in parts
+7. 💰 **Affordable** - ~$150-200 in parts
 8. 🚀 **Extensible** - add features without complexity
 
 ---
@@ -378,27 +391,22 @@ A: Absolutely! Edit conf/menu.json
 - Azure OpenAI: [azure.microsoft.com/openai](https://azure.microsoft.com/openai)
 - Raspberry Pi: [raspberrypi.org](https://raspberrypi.org)
 
-**Presentations:**
-- Microsoft Build 2024 Keynote
-- Conference talks & demos
-
 
 ---
 
 <!-- _class: lead -->
 
-# Thank You! 🙏
+# **BAIIAB - Building AI in a Box**
 
-## Questions?
+# Slides available at: [https://lastcoolnameleft.github.io/baiiab/](https://lastcoolnameleft.github.io/baiiab/)
 
-**BAIIAB - Building AI in a Box**
+![w:400](img/qrcode.png)
 
-*Making AI tangible, fun, and observable*
 
 ---
 
 *Built with ❤️ and OpenTelemetry*
 
 GitHub: lastcoolnameleft/baiiab
-Twitter/X: @lastcoolnameleft
+Twitter/X: @lastcoolname
 

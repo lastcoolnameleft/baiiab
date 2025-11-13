@@ -166,3 +166,5 @@ offline
 # OpenTelemetry logs
 logs/simulator_telemetry.log
 logs/*.log
+tmp
+.DS_Store
