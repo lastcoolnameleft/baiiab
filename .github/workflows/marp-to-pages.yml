@@ -46,14 +46,14 @@ jobs:
       - name: Marp Build (README)
         uses: docker://marpteam/marp-cli
         with:
-          args: README.md -o build/index.html --html
+          args: presentation.md -o build/index.html --html
         env:
           MARP_USER: root:root
 
       - name: Marp Build (README.pdf)
         uses: docker://marpteam/marp-cli
         with:
-          args: README.md --allow-local-files -o build/index.pdf
+          args: presentation.md --allow-local-files -o build/index.pdf
         env:
           MARP_USER: root:root
 
