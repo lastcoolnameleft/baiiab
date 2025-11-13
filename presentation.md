@@ -282,10 +282,11 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 - Native OpenTelemetry ingestion
 - Easy migration
 
+![bg right:50% w:400](img/elastic.png)
+
 ---
 
 ## Metrics Tracked
-
 
 - **API Calls**: Count, duration, model, status
 - **User Interactions**: Category selections, navigation

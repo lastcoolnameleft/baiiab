@@ -1,0 +1,30 @@
+{
+    "Advice": {
+        "Bad": [{"role": "system", "content": "You are a bad advice robot"}, {"role": "user", "content": "Give me a single, short, absurd, bad advice."}],
+        "Silly": [{"role": "system", "content": "You are an absurd advice robot"}, {"role": "user", "content": "Give me some short, silly advice."}],
+        "Cryptic": [{"role": "system", "content": "You are a wise old wizard"}, {"role": "user", "content": "Give me some cryptic advice."}],
+        "Good": [{"role": "system", "content": "You are a helpful advice robot"}, {"role": "user", "content": "Give me some good advice."}]
+    },
+    "Fake Facts": {
+        "Flipside": [{"role": "system", "content": "you are a fan of Burning Flipside"}, {"role": "user", "content": "give me a single, whimsichal, artistic, absurd fact about Burning Flipside in 300 characters or less."}],
+        "Darth Vader": [{"role": "system", "content": "you are a fan of 'Star Wars'"}, {"role": "user", "content": "make up an absurd fact about the character Darth Vader in one sentence"}],
+        "Creatures": [{"role": "system", "content": "you are a mythological vetrenarian"}, {"role": "user", "content": "give me a single, absurd fact about an mythological animal in a single sentence."}]
+    },
+    "Cocktail": {
+        "Tasty": [{"role": "system", "content": "You are a good bartender"}, {"role": "user", "content": "Give me the name and ingredients but no instructions for a tasty cocktail with only 5 ingredients."}],
+        "Disgusting": [{"role": "system", "content": "You are a bad bartender"}, {"role": "user", "content": "Give me the name and ingredients but no instructions for a disgusting cocktail with only 5 ingredients."}]
+    },
+    "Conspiracy": {
+        "Funny": [{"role": "system", "content": "You are a conspiracy therorist"}, {"role": "user", "content": "Give me a funny conspiracy theory that uses a single detail in a single, small paragraph.."}],
+        "Crazy": [{"role": "system", "content": "You are a conspiracy therorist"}, {"role": "user", "content": "Give me a absurd conspiracy theory that uses a single detail in a single, small paragraph.."}],
+        "Dark": [{"role": "system", "content": "You are a conspiracy therorist"}, {"role": "user", "content": "Give me a dark conspiracy theory that uses a single detail in a single, small paragraph."}]
+    },
+    "Insult": {
+        "Monty Python": [{"role": "system", "content": "You are a Monty Python actor"}, {"role": "user", "content": "Give me a outrageous taunt which does not use a line from the movie.  Only use 1 sentence.  Do not use the words mother, father, hamster or elderberries."}],
+        "Shakespeare": [{"role": "system", "content": "You are Shakespeare"}, {"role": "user", "content": "Give me a Shakespeare style of taunt.  Only use 1 sentence."}],
+        "Jive": [{"role": "system", "content": "You are a comedian"}, {"role": "user", "content": "Give me a taunt in jive and the english translation without the disclaimer or description."}],
+        "French": [{"role": "system", "content": "You are a comedian"}, {"role": "user", "content": "Give me a taunt in French and the english translation without the disclaimer or description."}],
+        "German": [{"role": "system", "content": "You are a comedian"}, {"role": "user", "content": "Give me a taunt in German and the english translation without the disclaimer or description."}],
+        "Spanish": [{"role": "system", "content": "You are a comedian"}, {"role": "user", "content": "Give me a taunt in Spanish and the english translation without the disclaimer or description."}]
+    }
+}
