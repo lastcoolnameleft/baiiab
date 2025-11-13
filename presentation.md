@@ -80,13 +80,18 @@ Started as a learning exercise...
 
 ---
 
+## Technical Architecture 
+![w:800](img/architecture.png)
+
+---
+
 ## Bill of Materials (BOM) 
 
 ### Hardware Components
 
 | Component | Purpose |
 |-----------|---------|
-| **Raspberry Pi Zero W** | 1 core, Debian based |
+| **Raspberry Pi Zero 2 W** | 4 core, Debian based |
 | **20x4 LCD Display** | Show navigation menus |
 | **Rotary Encoder** | Navigation (turn + push) |
 | **Thermal Printer** | Receipt paper output |
@@ -203,10 +208,8 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 *All powered by Azure OpenAI (GPT-4)*
 
----
 
-## Technical Architecture 
-![w:800](img/architecture.png)
+
 
 ---
 
@@ -216,13 +219,26 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 | Decision | Reason |
 |----------|--------|
-| **Raspberry Pi** | Affordable, powerful, GPIO support, __low power__|
+| **Raspberry Pi** | Affordable, powerful, GPIO support, __low power__ (0.17A)|
 | **Python** | Fast prototyping, rich libraries |
 | **20x4 LCD** | Perfect size, cheap, reliable |
 | **3D Print** | Reproducable, custom design |
 | **Rotary Encoder** | Intuitive, tactile feedback |
 | **OpenTelemetry** | Vendor-neutral, future-proof |
 | **Azure OpenAI** | GPT-4 access, company perk |
+
+---
+
+## The Numbers
+
+### Project Stats
+
+- **Lines of Code**: ~2,500
+- **Topics**: 5 "main" ones
+- **Subtopics**: 2-5+ each topic
+- **Cost per request**: ~$0.02 (GPT-4)
+- **Response time**: 1-3 seconds average
+- **Conference demos**: 100+ interactions
 
 ---
 
@@ -241,6 +257,23 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 - Real-time traces
 - Metrics and dashboards
 
+![bg right:50% w:600](img/OpenTelemetry.png)
+
+---
+
+## Elastic Observability Integration
+
+### Why Elastic?
+
+**Unified Platform:**
+- Logs, metrics, traces in one place
+- APM for application performance
+- Custom dashboards and alerts
+
+**OTLP Support:**
+- Native OpenTelemetry ingestion
+- Easy migration
+
 ---
 
 ## Metrics Tracked
@@ -256,18 +289,6 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 ![bg right:50% w:600](img/kibana.png)
 
----
-
-## The Numbers
-
-### Project Stats
-
-- **Lines of Code**: ~2,500
-- **Topics**: 5 "main" ones
-- **Subtopics**: 2-5+ each topic
-- **Cost per request**: ~$0.02 (GPT-4)
-- **Response time**: 2-3 seconds average
-- **Conference demos**: 100+ interactions
 
 ---
 
@@ -286,20 +307,6 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 - Share learning pains
 - "With enough eyes, all bugs are shallow..."
 
----
-
-## Elastic Observability Integration
-
-### Why Elastic?
-
-**Unified Platform:**
-- Logs, metrics, traces in one place
-- APM for application performance
-- Custom dashboards and alerts
-
-**OTLP Support:**
-- Native OpenTelemetry ingestion
-- Easy migration
 
 ---
 
