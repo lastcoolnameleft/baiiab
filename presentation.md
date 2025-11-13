@@ -140,18 +140,18 @@ Started as a learning exercise...
 
 ![bg right:50% w:600](img/the-internet.jpg)
 
-* Designed in OpenSCAD + Tinkercad
-* Inspired by "The Internet"
-* 3D Printed (PLA)
-* Holes for thermal printer, knobs, display
+- Designed in OpenSCAD + Tinkercad
+- Inspired by "The Internet"
+- 3D Printed (PLA)
+- Holes for thermal printer, knobs, display
 
 ---
 
 ## OpenSCAD
 
-* 3D Modeler for programmers
-* Enables parametric design
-* Customize knob
+- 3D Modeler for programmers
+- Enables parametric design
+- Customize knob
 
 ![bg right:60% w:700](img/openscad.png)
 
@@ -161,8 +161,8 @@ Started as a learning exercise...
 
 Inspired by my Prusa i3 MK3 printer interface
 
-* Uses a 20x4 character LCD display
-* Re-wrote interface in Python
+- Uses a 20x4 character LCD display
+- Re-wrote interface in Python
 
 
 ![bg right:50% w:600](img/prusa.webp)
