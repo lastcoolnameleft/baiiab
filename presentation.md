@@ -286,6 +286,14 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 ---
 
+![bg 95%](img/elastic-in-azure-1.png)
+
+---
+
+![bg 95%](img/elastic-in-azure-2.png)
+
+---
+
 ## Metrics Tracked
 
 - **API Calls**: Count, duration, model, status
@@ -355,6 +363,7 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 - ~~Local LLM~~ - 1 Core CPU
 - Mobile?  IoT?  Camera?
 - Print out cost?
+- Fix issues with some Unicode (e.g. "¾ oz Bourbon")
 
 ---
 
