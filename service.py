@@ -27,6 +27,21 @@ try:
             description="Number of user interactions",
             unit="1"
         )
+        up_counter = meter.create_counter(
+            "baiiab.user_interactions_up",
+            description="Number of user interactions up",
+            unit="1"
+        )
+        down_counter = meter.create_counter(
+            "baiiab.user_interactions_down",
+            description="Number of user interactions down",
+            unit="1"
+        )
+        select_counter = meter.create_counter(
+            "baiiab.user_interactions_select",
+            description="Number of user interactions select",
+            unit="1"
+        )
         menu_navigation_counter = meter.create_counter(
             "baiiab.menu_navigation",
             description="Menu navigation events",
@@ -55,7 +70,8 @@ def clockwise_cb():
     logging.debug("prev")
     if service_tracer:
         with service_tracer.start_as_current_span("rotary_encoder.clockwise"):
-            menu_navigation_counter.add(1, {"direction": "clockwise"})
+            menu_navigation_counter.add(1, {"interaction_type": "navigation_up"})
+            up_counter.add(1)
             screen.focus_prev()
     else:
         screen.focus_prev()
@@ -64,7 +80,8 @@ def counter_clockwise_cb():
     logging.debug("next")
     if service_tracer:
         with service_tracer.start_as_current_span("rotary_encoder.counter_clockwise"):
-            menu_navigation_counter.add(1, {"direction": "counter_clockwise"})
+            menu_navigation_counter.add(1, {"interaction_type": "navigation_down"})
+            down_counter.add(1)
             screen.focus_next()
     else:
         screen.focus_next()
@@ -73,7 +90,8 @@ def button_cb():
     logging.debug("push")
     if service_tracer:
         with service_tracer.start_as_current_span("button.press"):
-            interaction_counter.add(1, {"interaction_type": "button_press"})
+            menu_navigation_counter.add(1, {"interaction_type": "select"})
+            select_counter.add(1)
             screen.choose()
     else:
         screen.choose()
