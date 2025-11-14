@@ -367,10 +367,11 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 ---
 
-## Ignite
+## Ignite 2025
 
 - [Register here](https://ignite.microsoft.com/en-US/home) - Free online pass
 
+![bg right:50% w:600](img/ignite-2025.png)
 
 ---
 
@@ -394,17 +395,16 @@ A: Absolutely! Edit conf/menu.json
 
 ---
 
-## Key Takeaways 🎯
+## Key Takeaways
 
 ### What Makes This Special
 
 1. ✨ **Tangible AI** - physical beats digital for engagement
-2. 🎮 **Simple Interface** - 3 interactions = maximum accessibility
-3. 📊 **Observable** - understand usage from day one
-4. 🔌 **Resilient** - works online and offline
-5. 🌐 **Open Source** - learn, share, improve
-7. 💰 **Affordable** - ~$150-200 in parts
-8. 🚀 **Extensible** - add features without complexity
+1. 🎮 **Simple Interface** - 3 interactions = maximum accessibility
+1. � **Observable** - understand usage
+1. �🔌 **Resilient** - works online and offline
+1. 🌐 **Open Source** - learn, share, improve
+1. 💰 **Affordable** - ~$150-200 in parts
 
 ---
 

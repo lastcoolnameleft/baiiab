@@ -59,5 +59,10 @@ cd baiiab/
 /usr/bin/python /home/pi/baiiab/service.py
 # OTEL
 /usr/bin/python3 /home/pi/baiiab/helpers/otel_upload_service.py
+```
 
+## Debugging
+
+```shell
+sudo i2cdetect -y 1 # Should see LDC at 0x27
 ```
