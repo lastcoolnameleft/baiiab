@@ -71,6 +71,7 @@ def clockwise_cb():
     if service_tracer:
         with service_tracer.start_as_current_span("rotary_encoder.clockwise"):
             menu_navigation_counter.add(1, {"interaction_type": "navigation_up"})
+            interaction_counter.add(1, {"interaction_type": "navigation_up"})
             up_counter.add(1)
             screen.focus_prev()
     else:
@@ -81,6 +82,7 @@ def counter_clockwise_cb():
     if service_tracer:
         with service_tracer.start_as_current_span("rotary_encoder.counter_clockwise"):
             menu_navigation_counter.add(1, {"interaction_type": "navigation_down"})
+            interaction_counter.add(1, {"interaction_type": "navigation_down"})
             down_counter.add(1)
             screen.focus_next()
     else:
@@ -91,6 +93,7 @@ def button_cb():
     if service_tracer:
         with service_tracer.start_as_current_span("button.press"):
             menu_navigation_counter.add(1, {"interaction_type": "select"})
+            interaction_counter.add(1, {"interaction_type": "select"})
             select_counter.add(1)
             screen.choose()
     else:
