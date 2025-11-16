@@ -21,6 +21,23 @@ Partnership with Ignite
 
 ---
 
+<!-- _class: lead -->
+
+# Bad AI In A Box (**BAIIAB**)
+
+*Making AI "Touch Grass"*
+Tommy Falgout
+
+![bg right:50% w:600](img/lawn-shark.png)
+
+<!--
+Talk about Ignite
+Showcasing passion projects
+Partnership with Ignite
+-->
+
+---
+
 # Me
 
 - Big maker nerd
@@ -39,15 +56,15 @@ _footer: Source: me
 
 ---
 
-## WHY?!?!
+# WHY?!?!
 
 **Make AI Intriguing and Silly, Not Scary**
 
 - Inspired by friends "[Fortune Witch](https://www.olisny.com/fortune-witch/)" 
+- Build upon [Adafruit project](https://learn.adafruit.com/pi-thermal-printer)
 - Wanted to create something **tangible** and **fun**
 - AI can feel intimidating and complex
 - Physical interaction makes more approachable
-- Build upon [Adafruit project](https://learn.adafruit.com/pi-thermal-printer)
 
 > *"What if interfacing with AI could be as simple as turning a knob?"*
 
@@ -55,7 +72,7 @@ _footer: Source: me
 
 ---
 
-## Project Evolution
+# Project Evolution
 
 Started as a learning exercise...
 
@@ -70,7 +87,7 @@ Started as a learning exercise...
 
 ---
 
-## The Big Moment
+# The Big Moment
 
 ### Microsoft Build 2025 - Day 3 Keynote
 
@@ -82,20 +99,18 @@ Started as a learning exercise...
 - 1000+ live audience
 - 10k YouTube views
 
-## Prep for Ignite!
-
 ![bg right:35% w:400](img/build-keynote.png)
 
 ---
 
-## Technical Architecture 
+# Technical Architecture 
 ![w:800](img/architecture.png)
 
 ---
 
-## Bill of Materials (BOM) 
+# Bill of Materials (BOM) 
 
-### Hardware Components
+## Hardware Components
 
 | Component | Purpose |
 |-----------|---------|
@@ -111,7 +126,7 @@ Started as a learning exercise...
 
 ---
 
-## User Experience Flow
+# User Experience Flow
 
 ```
                                                 ┌─────────────────────┐
@@ -149,7 +164,7 @@ Started as a learning exercise...
 
 ---
 
-## The Box
+# The Box
 
 ![bg right:50% w:600](img/the-internet.jpg)
 
@@ -160,7 +175,7 @@ Started as a learning exercise...
 
 ---
 
-## OpenSCAD
+# OpenSCAD
 
 - 3D Modeler for programmers
 - Enables parametric design
@@ -170,7 +185,7 @@ Started as a learning exercise...
 
 ---
 
-## The Interface
+# The Interface
 
 Inspired by my Prusa i3 MK3 printer interface
 
@@ -182,7 +197,7 @@ Inspired by my Prusa i3 MK3 printer interface
 
 ---
 
-## Rotary Encoder
+# Rotary Encoder
 
 1. **Turn Clockwise** ↻
    - Navigate down through menu options
@@ -202,9 +217,39 @@ Inspired by my Prusa i3 MK3 printer interface
 
 ---
 
+# Thermal Printer
+
+![bg right:50% w:600](img/thermal-printer.jpg)
+
+- Originaly from [Adafruit](https://www.adafruit.com/product/597)
+        - [Python Library](https://github.com/adafruit/Adafruit-Thermal-Printer-Library)
+        - Discontinued!
+- Character Set: ASCII
+- Protocol: TTL Serial, 19200 baud
+---
+
+# Battery Capacity
+
+- mAh = how long a device can run
+- Think of mAh as the size of a fuel tank:
+  - A 2000 mAh battery can power a 100 mA device for 20 hours
+  - Higher mAh = longer runtime
+![bg right:40% w:500](img/battery-test.png)
+
+---
+
+# How do you measure this?!
+
+![bg right:40% w:500](img/usb-multimeter.png)
+- [USB multimeters](https://amzn.to/45PBLf5) are your friend!
+- Project requires 2 USB connections
+  - RPi + Thermal Printer
 
 
-## Content Categories 
+---
+
+
+# Content Categories 
 
 Stored in config file: **Topic -> Subtopic -> Prompt**
 
@@ -221,9 +266,9 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 ---
 
-## Architecture Decisions 
+# Architecture Decisions 
 
-### Why These Choices?
+## Why These Choices?
 
 | Decision | Reason |
 |----------|--------|
@@ -237,9 +282,9 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 ---
 
-## The Numbers
+# The Numbers
 
-### Project Stats
+## Project Stats
 
 - **Lines of Code**: ~2,500
 - **Topics**: 5 "main" ones
@@ -250,9 +295,9 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 ---
 
-## Adding Observability
+# Adding Observability
 
-### OpenTelemetry Integration
+## OpenTelemetry Integration
 
 **Why?** To understand:
 - How users interact with the device
@@ -269,9 +314,9 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 ---
 
-## Elastic Observability Integration
+# Elastic Observability Integration
 
-### Why Elastic?
+## Why Elastic?
 
 **Unified Platform:**
 - Logs, metrics, traces in one place
@@ -294,7 +339,7 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 ---
 
-## Metrics Tracked
+# Metrics Tracked
 
 - **API Calls**: Count, duration, model, status
 - **User Interactions**: Category selections, navigation
@@ -309,7 +354,7 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 ---
 
-## Beyond the Novelty
+# Beyond the Novelty
 
 **Physical AI interfaces:**
 - Bridge digital-physical divide
@@ -327,7 +372,7 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 ---
 
-## Challenges Overcome 
+# Challenges Overcome 
 
 **Hardware:**
 - Make it fit → custom cables, box
@@ -336,6 +381,7 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 **Software:**
 - API timeout handling → retry logic + offline mode
+- RPi + gRPC = PAIN → Migrate to HTTP (no compilation)
 - Menu navigation logic → state machine pattern
 
 ---
@@ -356,7 +402,7 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 ---
 
-## What's Next?
+# What's Next?
 
 - User Feedback (Thumbs up/down)
 - ~~Audio~~ - Not good for conferences
@@ -376,7 +422,7 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 ---
 
 
-## FAQ
+# FAQ
 
 **Q: Why Raspberry Pi?**
 A: Affordable, powerful, great GPIO support, huge community
@@ -395,9 +441,9 @@ A: Absolutely! Edit conf/menu.json
 
 ---
 
-## Key Takeaways
+# Key Takeaways
 
-### What Makes This Special
+## What Makes This Special
 
 1. ✨ **Tangible AI** - physical beats digital for engagement
 1. 🎮 **Simple Interface** - 3 interactions = maximum accessibility
@@ -408,9 +454,9 @@ A: Absolutely! Edit conf/menu.json
 
 ---
 
-## Resources
+# Resources
 
-### Learn More
+## Learn More
 
 **Code & Documentation:**
 - GitHub: [github.com/lastcoolnameleft/baiiab](https://github.com/lastcoolnameleft/baiiab)
@@ -427,17 +473,21 @@ A: Absolutely! Edit conf/menu.json
 
 <!-- _class: lead -->
 
-# **BAIIAB - Building AI in a Box**
+# **BAIIAB - Bad AI In A Box**
 
 # Slides available at: [https://lastcoolnameleft.github.io/baiiab/](https://lastcoolnameleft.github.io/baiiab/)
 
-![w:400](img/qrcode.png)
+![bg right:47% w:500](img/qrcode.png)
 
+<!--
+_footer:  Slides writen in [MARP](https://marp.app/)
 
+-->
 ---
 
-*Built with ❤️ and OpenTelemetry*
+*Built with ❤️ and penTelemetry*
 
 GitHub: lastcoolnameleft/baiiab
-Twitter/X: @lastcoolname
+Website: lastcoolnameleft.com
+Email: tommy lastcoolnameleft com
 
