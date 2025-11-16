@@ -103,29 +103,6 @@ Started as a learning exercise...
 
 ---
 
-# Technical Architecture 
-![w:800](img/architecture.png)
-
----
-
-# Bill of Materials (BOM) 
-
-## Hardware Components
-
-| Component | Purpose |
-|-----------|---------|
-| **Raspberry Pi Zero 2 W** | 4 core, Debian based |
-| **20x4 LCD Display** | Show navigation menus |
-| **Rotary Encoder** | Navigation (turn + push) |
-| **Thermal Printer** | Receipt paper output |
-| **Enclosure** | Custom 3D printed case |
-
-**Total Cost**: ~$150-$200
-
-
-
----
-
 # User Experience Flow
 
 ```
@@ -161,6 +138,27 @@ Started as a learning exercise...
                                                 │   [bit.ly/baiiab]   │
                                                 └─────────────────────┘
 ```
+
+---
+
+# Technical Architecture 
+![w:800](img/architecture.png)
+
+---
+
+# Bill of Materials (BOM) 
+
+## Hardware Components
+
+| Component | Purpose |
+|-----------|---------|
+| **Raspberry Pi Zero 2 W** | 4 core, Debian based |
+| **20x4 LCD Display** | Show navigation menus |
+| **Rotary Encoder** | Navigation (turn + push) |
+| **Thermal Printer** | Receipt paper output |
+| **Enclosure** | Custom 3D printed case |
+
+**Total Cost**: ~$150-$200
 
 ---
 
@@ -302,7 +300,6 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 **Why?** To understand:
 - How users interact with the device
 - API performance
-- Error rates and patterns
 - Most popular requests
 - How much this is costing Microsoft...
 
@@ -310,7 +307,7 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 - Real-time traces
 - Metrics and dashboards
 
-![bg right:50% w:600](img/OpenTelemetry.png)
+![bg right:40% w:600](img/OpenTelemetry.png)
 
 ---
 
@@ -375,7 +372,7 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 # Challenges Overcome 
 
 **Hardware:**
-- Make it fit → custom cables, box
+- Make it fit → custom cables + box
 - Periphals → Lots of failing in prod
 - Encoder debouncing → added sleep(?)
 
@@ -445,12 +442,12 @@ A: Absolutely! Edit conf/menu.json
 
 ## What Makes This Special
 
-1. ✨ **Tangible AI** - physical beats digital for engagement
-1. 🎮 **Simple Interface** - 3 interactions = maximum accessibility
-1. � **Observable** - understand usage
-1. �🔌 **Resilient** - works online and offline
-1. 🌐 **Open Source** - learn, share, improve
-1. 💰 **Affordable** - ~$150-200 in parts
+1. **Tangible AI** - physical beats digital for engagement
+1. **Simple Interface** - 3 interactions = maximum accessibility
+1. **Observable** - understand usage
+1. **Resilient** - works online and offline
+1. **Open Source** - learn, share, improve
+1. **Affordable** - ~$150-200 in parts
 
 ---
 
