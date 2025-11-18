@@ -11,12 +11,13 @@ backgroundImage: url('https://marp.app/assets/hero-background.svg')
 # Bad AI In A Box (**BAIIAB**)
 
 *Making AI "Touch Grass"*
-Tommy Falgout
+Tommy Falgout - Partner Solution Architect @ Microsoft
 
 <!--
-Talk about Ignite
-Showcasing passion projects
+My day started at their 2AM
+With Amanda + Tam
 Partnership with Ignite
+BAD != evil.  Trying to upend expectations
 -->
 
 ---
@@ -26,14 +27,13 @@ Partnership with Ignite
 # Bad AI In A Box (**BAIIAB**)
 
 *Making AI "Touch Grass"*
-Tommy Falgout
+Lawn Shark
 
 ![bg right:50% w:600](img/lawn-shark.png)
 
 <!--
-Talk about Ignite
-Showcasing passion projects
-Partnership with Ignite
+Don't want you to feel bait and switched
+My Lawn Shark
 -->
 
 ---
@@ -41,6 +41,7 @@ Partnership with Ignite
 # Me
 
 - Big maker nerd
+  - [DFW Trebuchet](https://www.dfwtrebuchet.com/)
   - [LEGO Robo-Clippy](https://github.com/lastcoolnameleft/robo-clippy)
   - [Bad AI In A Box](https://github.com/lastcoolnameleft/baiiab)
   - [LED Lanyard](https://ledlanyard.com)
@@ -70,6 +71,10 @@ _footer: Source: me
 
 ![bg right:45% w:600](img/yt.jpg)
 
+<!--
+BAD != evil.  Trying to upend expectations
+-->
+
 ---
 
 # Project Evolution
@@ -84,6 +89,10 @@ Started as a learning exercise...
 6. **Cloud Integration**: Connected to Elastic's Observability Platform
 
 ![bg right:40% w:500](img/baaas.png)
+
+<!--
+Inspired by a "Bad advice booth" I attended
+-->
 
 ---
 
@@ -100,6 +109,27 @@ Started as a learning exercise...
 - 10k YouTube views
 
 ![bg right:35% w:400](img/build-keynote.png)
+
+<!--
+Might not seem like a big deal, but I have this as my Team profile pic and still get comments
+
+-->
+
+---
+
+## Ignite 2025
+
+- [Register here](https://ignite.microsoft.com/en-US/home) - Free online pass
+- Sessions on AI, Data, Security, Cloud computing
+
+![bg right:50% w:600](img/ignite-2025.png)
+
+<!--
+Keynote tomorrow
+Used for product annoucements, Research
+Happening all week
+Doing Lab with AKS (Azure Managed k8s)
+-->
 
 ---
 
@@ -139,11 +169,23 @@ Started as a learning exercise...
                                                 └─────────────────────┘
 ```
 
+<!--
+Show the box
+-->
 ---
 
 # Technical Architecture 
 ![w:800](img/architecture.png)
 
+---
+
+<!-- _class: lead -->
+
+# DEMO TIME!
+
+<!--
+Demo simulator + show code
+-->
 ---
 
 # Bill of Materials (BOM) 
@@ -171,12 +213,16 @@ Started as a learning exercise...
 - 3D Printed (PLA)
 - Holes for thermal printer, knobs, display
 
+<!--
+Design inspired by The Internet from IT Crowd
+-->
+
 ---
 
 # OpenSCAD
 
 - 3D Modeler for programmers
-- Enables parametric design
+- Enables easy parametric design
 - Customize knob
 
 ![bg right:60% w:700](img/openscad.png)
@@ -203,7 +249,7 @@ Inspired by my Prusa i3 MK3 printer interface
 2. **Turn Counter-Clockwise** ↺
    - Navigate up through menu options
    
-3. **Push Button** 🔘
+3. **Push Button** 
    - Select current option
    - Generate AI response
 
@@ -328,14 +374,6 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 
 ---
 
-![bg 95%](img/elastic-in-azure-1.png)
-
----
-
-![bg 95%](img/elastic-in-azure-2.png)
-
----
-
 # Metrics Tracked
 
 - **API Calls**: Count, duration, model, status
@@ -347,6 +385,24 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 *All visualized in Elastic dashboards*
 
 ![bg right:50% w:600](img/kibana.png)
+
+---
+
+<!-- _class: lead -->
+
+# DEMO TIME! (Take 2)
+
+<!--
+Demo simulator + show code
+-->
+
+---
+
+![bg 95%](img/elastic-in-azure-1.png)
+
+---
+
+![bg 95%](img/elastic-in-azure-2.png)
 
 
 ---
@@ -413,6 +469,10 @@ Stored in config file: **Topic -> Subtopic -> Prompt**
 ## Ignite 2025
 
 - [Register here](https://ignite.microsoft.com/en-US/home) - Free online pass
+- [**Shape work’s future with hardware that sparks human connection:**](https://ignite.microsoft.com/en-US/sessions/THRSP894?source=sessions) Thu @ 1:30 PM 
+- **[Interactive Session: Serving LLMs on GPU systems at scale with NVIDIA Dynamo](https://ignite.microsoft.com/en-US/sessions/BRKSP1753?source=sessions)** Wed @ 10:15 AM
+- **[Azure AI Infra updates to power frontier and enterprise workloads](https://ignite.microsoft.com/en-US/sessions/BRK179?source=sessions)** Tue @ 2:30 PM
+
 
 ![bg right:50% w:600](img/ignite-2025.png)
 
