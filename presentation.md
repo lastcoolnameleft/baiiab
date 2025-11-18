@@ -12,6 +12,7 @@ backgroundImage: url('https://marp.app/assets/hero-background.svg')
 
 *Making AI "Touch Grass"*
 Tommy Falgout - Partner Solution Architect @ Microsoft
+Amanda Wong - Partner Solution Architect @ Microsoft
 
 <!--
 My day started at their 2AM
