@@ -50,10 +50,11 @@ jobs:
         env:
           MARP_USER: root:root
 
+      # This will probably overwrite some of the content, but I'm hoping the only thing different is the index page.
       - name: Marp Build (French)
         uses: docker://marpteam/marp-cli
         with:
-          args: presentation-fr.md -o build/fr/index.html --html
+          args: presentation-fr.md -o build/index-fr.html --html
         env:
           MARP_USER: root:root
 
@@ -67,7 +68,7 @@ jobs:
       - name: Marp Build (French PDF)
         uses: docker://marpteam/marp-cli
         with:
-          args: presentation-fr.md --allow-local-files -o build/fr/index.pdf
+          args: presentation-fr.md --allow-local-files -o build/index-fr.pdf
         env:
           MARP_USER: root:root
 
