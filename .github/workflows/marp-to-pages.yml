@@ -43,17 +43,31 @@ jobs:
       - name: Copy images and themes
         run: mkdir build && cp -R img build/img
 
-      - name: Marp Build (README)
+      - name: Marp Build (English)
         uses: docker://marpteam/marp-cli
         with:
           args: presentation.md -o build/index.html --html
         env:
           MARP_USER: root:root
 
-      - name: Marp Build (README.pdf)
+      - name: Marp Build (French)
+        uses: docker://marpteam/marp-cli
+        with:
+          args: presentation-fr.md -o build/fr/index.html --html
+        env:
+          MARP_USER: root:root
+
+      - name: Marp Build (English PDF)
         uses: docker://marpteam/marp-cli
         with:
           args: presentation.md --allow-local-files -o build/index.pdf
+        env:
+          MARP_USER: root:root
+
+      - name: Marp Build (French PDF)
+        uses: docker://marpteam/marp-cli
+        with:
+          args: presentation-fr.md --allow-local-files -o build/fr/index.pdf
         env:
           MARP_USER: root:root
 
