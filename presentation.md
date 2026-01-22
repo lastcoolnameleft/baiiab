@@ -12,7 +12,7 @@ backgroundImage: url('https://marp.app/assets/hero-background.svg')
 
 *Making AI "Touch Grass"*
 Tommy Falgout - Partner Solution Architect @ Microsoft
-Amanda Wong - Partner Solution Architect @ Microsoft
+Yui Mikuriya - Partner Solution Architect @ Microsoft
 
 <!--
 My day started at their 2AM
@@ -118,21 +118,6 @@ Might not seem like a big deal, but I have this as my Team profile pic and still
 
 ---
 
-## Ignite 2025
-
-- [Register here](https://ignite.microsoft.com/en-US/home) - Free online pass
-- Sessions on AI, Data, Security, Cloud computing
-
-![bg right:50% w:600](img/ignite-2025.png)
-
-<!--
-Keynote tomorrow
-Used for product annoucements, Research
-Happening all week
-Doing Lab with AKS (Azure Managed k8s)
--->
-
----
 
 # User Experience Flow
 
@@ -466,19 +451,6 @@ Demo simulator + show code
 - Fix issues with some Unicode (e.g. "¾ oz Bourbon")
 
 ---
-
-## Ignite 2025
-
-- [Register here](https://ignite.microsoft.com/en-US/home) - Free online pass
-- [**Shape work’s future with hardware that sparks human connection:**](https://ignite.microsoft.com/en-US/sessions/THRSP894?source=sessions) Thu @ 1:30 PM 
-- **[Interactive Session: Serving LLMs on GPU systems at scale with NVIDIA Dynamo](https://ignite.microsoft.com/en-US/sessions/BRKSP1753?source=sessions)** Wed @ 10:15 AM
-- **[Azure AI Infra updates to power frontier and enterprise workloads](https://ignite.microsoft.com/en-US/sessions/BRK179?source=sessions)** Tue @ 2:30 PM
-
-
-![bg right:50% w:600](img/ignite-2025.png)
-
----
-
 
 # FAQ
 
