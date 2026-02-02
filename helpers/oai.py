@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from openai import AzureOpenAI
 
 parser = argparse.ArgumentParser(
-    prog='top',
+    prog='oai',
     description='Show top lines from each file')
 parser.add_argument('system', type=str, help='System message')
 parser.add_argument('prompt', type=str, help='Prompt message')
